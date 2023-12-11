@@ -565,6 +565,22 @@ Blockly.Blocks['control_delete_this_clone'] = {
   }
 };
 
+Blockly.Blocks['control_is_clone?'] = {
+  /**
+   * Block for "delete this clone."
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.CONTROL_ISCLONE?,
+      "args0": [
+      ],
+      "category": Blockly.Categories.control,
+      "extensions": ["colours_control", "output_number"]
+    });
+  }
+};
+
 Blockly.Blocks['control_stop_sprite_menu'] = {
   /**
    * pm: Stop-sprite drop-down menu.
