@@ -9,7 +9,7 @@ goog.require('Blockly.Colours');
 goog.require('Blockly.constants');
 // i actually dont know what else to require
 
-ScratchBlocks.Blocks['multiInput'] = { // i took this from live tests and modified it a little
+Blockly.Blocks['multiInput'] = { // i took this from live tests and modified it a little
   /**
    * @this Blockly.Block
    */
@@ -32,10 +32,10 @@ ScratchBlocks.Blocks['multiInput'] = { // i took this from live tests and modifi
     this.extendable = true;
     this.inputs_ = 0; // It's a multi input, right?
     this.minimumInputs = 1; // okay yeah idk how to initialize inputs so we're just going to leave this at one
-    this.color = ScratchBlocks.Colours.operators.primary;
+    this.color = Blockly.Colours.operators.primary;
     this.setColour(this.color, this.color, this.color);
     this.setOutput(true, 'multiInput')
-    this.setOutputShape(ScratchBlocks.OUTPUT_SHAPE_SQUARE);
+    this.setOutputShape(Blockly.OUTPUT_SHAPE_SQUARE);
     this.blocks = [];
     
     this.addInputColor = '#00FF00'; // idk how to do this
@@ -44,14 +44,14 @@ ScratchBlocks.Blocks['multiInput'] = { // i took this from live tests and modifi
     this.isMutated = false;
     this.defaultValue = '';
     
-    const remove = new ScratchBlocks.FieldExpandableRemove();
-    const add = new ScratchBlocks.FieldExpandableAdd();
+    const remove = new Blockly.FieldExpandableRemove();
+    const add = new Blockly.FieldExpandableAdd();
     this.appendDummyInput('REMOVE')
       .appendField(remove, 'remove');
     this.appendDummyInput('ADD')
       .appendField(add, 'add')
     const thisBlock = this;
-    const button = new ScratchBlocks.FieldCheckbox(
+    const button = new Blockly.FieldCheckbox(
       this.expanded, 
       newState => {
         thisBlock.setExpanded(newState)
@@ -173,7 +173,7 @@ ScratchBlocks.Blocks['multiInput'] = { // i took this from live tests and modifi
     this.setExpanded(newExpanded)
     this.setFieldValue(newExpanded, 'button')
     
-    const color = JSON.parse(xmlElement.getAttribute('color') || `"${ScratchBlocks.Colours.operators.primary}"`);
+    const color = JSON.parse(xmlElement.getAttribute('color') || `"${Blockly.Colours.operators.primary}"`);
     if (typeof color === 'string' && color.length === 7) {
       //console.log(xmlElement.getAttribute('color'), this.color)
       if (typeof this.color === 'string') {
@@ -194,8 +194,8 @@ ScratchBlocks.Blocks['multiInput'] = { // i took this from live tests and modifi
     if (!this.extendable) return;
     // Create an event group to keep field value and mutator in sync
     // Return null at the end because setValue is called here already.
-    ScratchBlocks.Events.setGroup(true);
-    var oldMutation = ScratchBlocks.Xml.domToText(this.mutationToDom());
+    Blockly.Events.setGroup(true);
+    var oldMutation = Blockly.Xml.domToText(this.mutationToDom());
     if (!isAdding) {
       if (!(this.inputs_ < this.minimumInputs)) {
         const number = this.inputs_;
@@ -227,9 +227,9 @@ ScratchBlocks.Blocks['multiInput'] = { // i took this from live tests and modifi
       this.render();
     }
     //this.initInputs();
-    var newMutation = ScratchBlocks.Xml.domToText(this.mutationToDom());
-    ScratchBlocks.Events.fire(new ScratchBlocks.Events.BlockChange(this,
+    var newMutation = Blockly.Xml.domToText(this.mutationToDom());
+    Blockly.Events.fire(new Blockly.Events.BlockChange(this,
       'mutation', null, oldMutation, newMutation));
-    ScratchBlocks.Events.setGroup(false);
+    Blockly.Events.setGroup(false);
   }
 };
