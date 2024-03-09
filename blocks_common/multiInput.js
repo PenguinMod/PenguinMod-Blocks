@@ -3,16 +3,6 @@
  * @author @lego7set
  */
  
-/* This file is really just copy-paste edited version of polygon.js */
- 
-// https://github.com/lego7set/PenguinMod-Blocks/blob/multiinputblocks/blocks_common/polygon.js
-// https://github.com/PenguinMod/PenguinMod-Blocks/blob/2964bbd4ee76f93995b0cc4b06cfe001697ff0d3/core/colours.js#L23
-// https://github.com/lego7set/PenguinMod-Blocks/blob/multiinputblocks/blocks_common/text.js
-// https://github.com/lego7set/PenguinMod-Blocks/blob/multiinputblocks/core/field_checkbox.js // Make sure to create two new icons similar to this called AddInput and DeleteInput
-// https://github.com/lego7set/PenguinMod-Blocks/blob/multiinputblocks/core/field_expandable_add.js
-// https://groups.google.com/g/blockly/c/hnhObVXLJw4
-// https://github.com/google/blockly/issues/3078
- 
 goog.provide('Blockly.Blocks.multiInput');
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Colours');
