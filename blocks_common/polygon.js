@@ -4,7 +4,7 @@
  */
 'use strict';
 
-goog.provide('Blockly.Blocks.ploygon');
+goog.provide('Blockly.Blocks.polygon');
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Colours');
 goog.require('Blockly.constants');
