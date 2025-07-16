@@ -48,6 +48,7 @@ goog.inherits(Blockly.FieldCustom, Blockly.Field);
  * @nocollapse
  */
 Blockly.FieldCustom.fromJson = function(options) {
+  console.log("new custom field", options);
   return new Blockly.FieldCustom(options['custom']);
 };
 
