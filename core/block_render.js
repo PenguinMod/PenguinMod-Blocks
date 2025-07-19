@@ -1046,7 +1046,8 @@ Blockly.BlockSvg.prototype.computeInputWidth_ = function(input) {
   // Empty input shape widths.
   if (input.type == Blockly.INPUT_VALUE &&
       (!input.connection || !input.connection.isConnected())) {
-    switch (input.connection.getOutputShape()) {
+    const shape = input.connection.getOutputShape();
+    switch (shape) {
       case Blockly.OUTPUT_SHAPE_SQUARE:
         return Blockly.BlockSvg.INPUT_SHAPE_SQUARE_WIDTH;
       case Blockly.OUTPUT_SHAPE_ROUND:
@@ -1057,8 +1058,11 @@ Blockly.BlockSvg.prototype.computeInputWidth_ = function(input) {
         return Blockly.BlockSvg.INPUT_SHAPE_LEAF_WIDTH;
       case Blockly.OUTPUT_SHAPE_PLUS:
         return Blockly.BlockSvg.INPUT_SHAPE_PLUS_WIDTH;
-      default:
+      default: {
+        const customShape = Blockly.BlockSvg.CUSTOM_SHAPES.get(shape);
+        if (customShape) return customShape.emptyInputWidth;
         return 0;
+      }
     }
   } else {
     return 0;
@@ -1314,14 +1318,23 @@ Blockly.BlockSvg.prototype.renderClassify_ = function() {
     } else {
       shapes.push('reporter');
     }
-    if (this.edgeShape_ === Blockly.OUTPUT_SHAPE_HEXAGONAL) {
-      shapes.push('boolean');
-    } else if (this.edgeShape_ === Blockly.OUTPUT_SHAPE_ROUND) {
-      shapes.push('round');
-    } else if (this.edgeShape_ === Blockly.OUTPUT_SHAPE_LEAF) {
-      shapes.push('leaf');
-    } else if (this.edgeShape_ === Blockly.OUTPUT_SHAPE_PLUS) {
-      shapes.push('plus');
+    switch (this.edgeShape_) {
+      case Blockly.OUTPUT_SHAPE_HEXAGONAL:
+        shapes.push('boolean');
+        break;
+      case Blockly.OUTPUT_SHAPE_ROUND:
+        shapes.push('round');
+        break;
+      case Blockly.OUTPUT_SHAPE_LEAF:
+        shapes.push('leaf');
+        break;
+      case Blockly.OUTPUT_SHAPE_PLUS:
+        shapes.push('plus');
+        break;
+      default: {
+        const isCustomShape = Blockly.BlockSvg.CUSTOM_SHAPES.has(shape);
+        if (isCustomShape) shapes.push('custom');
+      }
     }
   } else {
     // count the number of statement inputs
@@ -1614,38 +1627,52 @@ Blockly.BlockSvg.prototype.renderDrawLeft_ = function(steps) {
   }
   if (this.edgeShape_) {
     // Draw the left-side edge shape.
-    if (this.edgeShape_ === Blockly.OUTPUT_SHAPE_ROUND) {
-      // Draw a rounded arc.
-      steps.push('a ' + this.edgeShapeWidth_ + ' ' + this.edgeShapeWidth_ + ' 0 0 1 0 -' + this.edgeShapeWidth_ * 2);
-    } else if (this.edgeShape_ === Blockly.OUTPUT_SHAPE_HEXAGONAL) {
-      // Draw a half-hexagon.
-      steps.push('l ' + -this.edgeShapeWidth_ + ' ' + -this.edgeShapeWidth_ +
-        ' l ' + this.edgeShapeWidth_ + ' ' + -this.edgeShapeWidth_);
-    } else if (this.edgeShape_ === Blockly.OUTPUT_SHAPE_LEAF) {
-      // Draw a half-leaf.
-      steps.push(
-        `a ${this.edgeShapeWidth_} ${this.edgeShapeWidth_} 0 0 1 -${this.edgeShapeWidth_} -${this.edgeShapeWidth_} ` +
-        `l 0 -${this.edgeShapeWidth_ * 0.6} ` +
-        `a ${this.edgeShapeWidth_ * 0.4} ${this.edgeShapeWidth_ * 0.4} 0 0 1 ${this.edgeShapeWidth_ * 0.4} -${this.edgeShapeWidth_ * 0.4}`
-      );
-    } else if (this.edgeShape_ === Blockly.OUTPUT_SHAPE_PLUS) {
-      // Draw a half-plus.
-      let unit = 6
-      let remainingHeight = this.edgeShapeWidth_ * 2 - 36
-      let remainingWidth = this.edgeShapeWidth_  - 20
-      steps.push(
-        `l -${remainingWidth} 0 ` +
-        `a ${unit} ${unit} 0 0 1 -${unit} -${unit} ` +
-        `a ${unit} ${unit} 0 0 0 -${unit} -${unit} ` +
-        `l -2 0 ` +
-        `a ${unit} ${unit} 0 0 1 -${unit} -${unit} ` +
-        `l 0 -${remainingHeight} ` +
-        `a ${unit} ${unit} 0 0 1 ${unit} -${unit} ` +
-        `l 2 0 ` +
-        `a ${unit} ${unit} 0 0 0 ${unit} -${unit} ` +
-        `a ${unit} ${unit} 0 0 1 ${unit} -${unit} ` +
-        `l ${remainingWidth} 0`
-      )
+    switch (this.edgeShape_) {
+      case Blockly.OUTPUT_SHAPE_ROUND:
+        // Draw a rounded arc.
+        steps.push('a ' + this.edgeShapeWidth_ + ' ' + this.edgeShapeWidth_ + ' 0 0 1 0 -' + this.edgeShapeWidth_ * 2);
+        break;
+      case Blockly.OUTPUT_SHAPE_HEXAGONAL:
+        // Draw a half-hexagon.
+        steps.push('l ' + -this.edgeShapeWidth_ + ' ' + -this.edgeShapeWidth_ +
+          ' l ' + this.edgeShapeWidth_ + ' ' + -this.edgeShapeWidth_);
+        break;
+      case Blockly.OUTPUT_SHAPE_LEAF:
+        // Draw a half-leaf.
+        steps.push(
+          `a ${this.edgeShapeWidth_} ${this.edgeShapeWidth_} 0 0 1 -${this.edgeShapeWidth_} -${this.edgeShapeWidth_} ` +
+          `l 0 -${this.edgeShapeWidth_ * 0.6} ` +
+          `a ${this.edgeShapeWidth_ * 0.4} ${this.edgeShapeWidth_ * 0.4} 0 0 1 ${this.edgeShapeWidth_ * 0.4} -${this.edgeShapeWidth_ * 0.4}`
+        );
+        break;
+      case Blockly.OUTPUT_SHAPE_PLUS: {
+        // Draw a half-plus.
+        const unit = 6;
+        const remainingHeight = this.edgeShapeWidth_ * 2 - 36;
+        const remainingWidth = this.edgeShapeWidth_  - 20;
+        steps.push(
+          `l -${remainingWidth} 0 ` +
+          `a ${unit} ${unit} 0 0 1 -${unit} -${unit} ` +
+          `a ${unit} ${unit} 0 0 0 -${unit} -${unit} ` +
+          `l -2 0 ` +
+          `a ${unit} ${unit} 0 0 1 -${unit} -${unit} ` +
+          `l 0 -${remainingHeight} ` +
+          `a ${unit} ${unit} 0 0 1 ${unit} -${unit} ` +
+          `l 2 0 ` +
+          `a ${unit} ${unit} 0 0 0 ${unit} -${unit} ` +
+          `a ${unit} ${unit} 0 0 1 ${unit} -${unit} ` +
+          `l ${remainingWidth} 0`
+        );
+        break;
+      }
+      default: {
+        const customShape = Blockly.BlockSvg.CUSTOM_SHAPES.get(this.edgeShape_);
+        if (customShape) {
+          const path = customShape.leftPath(this);
+          if (path && Array.isArray(path)) steps.push(...path);
+          else console.error(`Left Path Function for shape: ${this.edgeShape_} did not return an Array!`);
+        }
+      }
     }
   }
   steps.push('z');
@@ -1660,39 +1687,53 @@ Blockly.BlockSvg.prototype.renderDrawLeft_ = function(steps) {
 Blockly.BlockSvg.prototype.drawEdgeShapeRight_ = function(steps) {
   if (this.edgeShape_ && !this.inputList.find(v => v.type == Blockly.NEXT_STATEMENT)) {
     // Draw the right-side edge shape.
-    if (this.edgeShape_ === Blockly.OUTPUT_SHAPE_ROUND) {
-      // Draw a rounded arc.
-      steps.push('a ' + this.edgeShapeWidth_ + ' ' + this.edgeShapeWidth_ +
+    switch (this.edgeShape_) {
+      case Blockly.OUTPUT_SHAPE_ROUND:
+        // Draw a rounded arc.
+        steps.push('a ' + this.edgeShapeWidth_ + ' ' + this.edgeShapeWidth_ +
           ' 0 0 1 0 ' + this.edgeShapeWidth_ * 2);
-    } else if (this.edgeShape_ === Blockly.OUTPUT_SHAPE_HEXAGONAL) {
-      // Draw a half-hexagon.
-      steps.push('l ' + this.edgeShapeWidth_ + ' ' + this.edgeShapeWidth_ +
+        break;
+      case Blockly.OUTPUT_SHAPE_HEXAGONAL:
+        // Draw a half-hexagon.
+        steps.push('l ' + this.edgeShapeWidth_ + ' ' + this.edgeShapeWidth_ +
           ' l ' + -this.edgeShapeWidth_ + ' ' + this.edgeShapeWidth_);
-    } else if (this.edgeShape_ === Blockly.OUTPUT_SHAPE_LEAF) {
-      // Draw a half-leaf.
-      steps.push(
-        `a ${this.edgeShapeWidth_} ${this.edgeShapeWidth_} 0 0 1 ${this.edgeShapeWidth_} ${this.edgeShapeWidth_} ` +
-        `l 0 ${this.edgeShapeWidth_ * 0.6} ` +
-        `a ${this.edgeShapeWidth_ * 0.4} ${this.edgeShapeWidth_ * 0.4} 0 0 1 -${this.edgeShapeWidth_ * 0.4} ${this.edgeShapeWidth_ * 0.4}`
-      );
-    } else if (this.edgeShape_ === Blockly.OUTPUT_SHAPE_PLUS) {
-      // Draw a half-plus.
-      let unit = 6
-      let remainingHeight = this.edgeShapeWidth_ * 2 - 36
-      let remainingWidth = this.edgeShapeWidth_ - 20
-      steps.push(
-        `l ${remainingWidth} 0 ` +
-        `a ${unit} ${unit} 0 0 1 ${unit} ${unit} ` +
-        `a ${unit} ${unit} 0 0 0 ${unit} ${unit} ` +
-        `l 2 0 ` +
-        `a ${unit} ${unit} 0 0 1 ${unit} ${unit} ` +
-        `l 0 ${remainingHeight} ` +
-        `a ${unit} ${unit} 0 0 1 -${unit} ${unit} ` +
-        `l -2 0 ` +
-        `a ${unit} ${unit} 0 0 0 -${unit} ${unit} ` +
-        `a ${unit} ${unit} 0 0 1 -${unit} ${unit} ` +
-        `l -${remainingWidth} 0`
-      )
+        break;
+      case Blockly.OUTPUT_SHAPE_LEAF:
+        // Draw a half-leaf.
+        steps.push(
+          `a ${this.edgeShapeWidth_} ${this.edgeShapeWidth_} 0 0 1 ${this.edgeShapeWidth_} ${this.edgeShapeWidth_} ` +
+          `l 0 ${this.edgeShapeWidth_ * 0.6} ` +
+          `a ${this.edgeShapeWidth_ * 0.4} ${this.edgeShapeWidth_ * 0.4} 0 0 1 -${this.edgeShapeWidth_ * 0.4} ${this.edgeShapeWidth_ * 0.4}`
+        );
+        break;
+      case Blockly.OUTPUT_SHAPE_PLUS: {
+        // Draw a half-plus.
+        const unit = 6;
+        const remainingHeight = this.edgeShapeWidth_ * 2 - 36;
+        const remainingWidth = this.edgeShapeWidth_ - 20;
+        steps.push(
+          `l ${remainingWidth} 0 ` +
+          `a ${unit} ${unit} 0 0 1 ${unit} ${unit} ` +
+          `a ${unit} ${unit} 0 0 0 ${unit} ${unit} ` +
+          `l 2 0 ` +
+          `a ${unit} ${unit} 0 0 1 ${unit} ${unit} ` +
+          `l 0 ${remainingHeight} ` +
+          `a ${unit} ${unit} 0 0 1 -${unit} ${unit} ` +
+          `l -2 0 ` +
+          `a ${unit} ${unit} 0 0 0 -${unit} ${unit} ` +
+          `a ${unit} ${unit} 0 0 1 -${unit} ${unit} ` +
+          `l -${remainingWidth} 0`
+        );
+        break;
+      }
+      default: {
+        const customShape = Blockly.BlockSvg.CUSTOM_SHAPES.get(this.edgeShape_);
+        if (customShape) {
+          const path = customShape.rightPath(this);
+          if (path && Array.isArray(path)) steps.push(...path);
+          else console.error(`Right Path Function for shape: ${this.edgeShape_} did not return an Array!`);
+        }
+      }
     }
   }
 };
@@ -1888,11 +1929,21 @@ Blockly.BlockSvg.getInputShapeInfo_ = function(shape) {
       inputShapeArgType = 'round';
       break;
     case Blockly.OUTPUT_SHAPE_SQUARE:
-    default:  // If the input connection is not connected, draw a hole shape.
-      inputShapePath = Blockly.BlockSvg.INPUT_SHAPE_SQUARE;
-      inputShapeWidth = Blockly.BlockSvg.INPUT_SHAPE_SQUARE_WIDTH;
-      inputShapeArgType = 'square';
+    default: {
+      // this could be a custom shape
+      const customShape = Blockly.BlockSvg.CUSTOM_SHAPES.get(shape);
+      if (shape !== Blockly.OUTPUT_SHAPE_SQUARE && customShape) {
+        inputShapePath = customShape.emptyInputPath;
+        inputShapeWidth = customShape.emptyInputWidth;
+        inputShapeArgType = customShape.name;
+      } else {
+        // If the input connection is not connected, draw a hole shape.
+        inputShapePath = Blockly.BlockSvg.INPUT_SHAPE_SQUARE;
+        inputShapeWidth = Blockly.BlockSvg.INPUT_SHAPE_SQUARE_WIDTH;
+        inputShapeArgType = 'square';
+      }
       break;
+    }
   }
   return {
     path: inputShapePath,
@@ -1954,4 +2005,63 @@ Blockly.BlockSvg.prototype.renderMoveConnections_ = function() {
       this.nextConnection.tighten_();
     }
   }
+};
+
+/* -= Custom Block Shape API =- */
+
+// Stores all user-defined custom shapes
+Blockly.BlockSvg.CUSTOM_SHAPES = new Map([
+  /* pre-made shapes */
+]);
+
+/**
+ * Register a custom block shape
+ * @param {string} name The name used to identify custom shapes
+ * @param {object} shapeInfo All relative information for generating the shape (see below)
+ */
+/*
+shapeInfo entries ==> 
+{
+  emptyInputPath: (string) -- SVG path for the inside of an empty input slot
+  emptyInputWidth: (number) -- (optional) Default width for a empty input slot
+  leftPath: (block) => { return Array } -– Returns an array of SVG path parts for the left side of the block
+  rightPath: (block) => { return Array } –- Returns an array of SVG path parts for the right side of the block
+  SHAPE_IN_SHAPE_PADDING ???
+}
+*/
+Blockly.BlockSvg.registerCustomShape(name, shapeInfo) {
+  name = String(name);
+
+  if (!name || typeof shapeInfo !== 'object' || Array.isArray(shapeInfo)) {
+    console.error([
+      `Registration for Shape '${name}' failed`,
+      "Param 2 must be a object containing:",
+      "'emptyInputPath' (string) -- SVG path for the inside of an empty input slot",
+      "'emptyInputWidth' (number) -- (optional) Default width for a empty input slot",
+      "'leftPath' (function) -– Returns an array of SVG path parts for the left side of the block",
+      "'rightPath' (function) –- Returns an array of SVG path parts for the right side of the block",
+      "'...' () -- ...",
+    ].join("\n"));
+    return;
+  }
+  if (typeof shapeInfo.emptyInputPath !== "string") {
+    console.error(`Registration for Shape '${name}' failed\nNo 'emptyInputPath' entry found in Param 2/invalid SVG path string`);
+    return;
+  }
+  if (typeof shapeInfo.leftPath !== "function") {
+    console.error(`Registration for Shape '${name}' failed\nNo 'leftPath' entry found in Param 2/entry is not a function`);
+    return;
+  }
+  if (typeof shapeInfo.rightPath !== "function") {
+    console.error(`Registration for Shape '${name}' failed\nNo 'rightPath' entry found in Param 2/entry is not a function`);
+    return;
+  }
+
+  const keyName = "custom-" + name;
+  shapeInfo.name = name;
+
+  // optional value, this default value is constant for all shapes
+  if (shapeInfo.emptyInputWidth < 1) shapeInfo.emptyInputWidth = 12 * Blockly.BlockSvg.GRID_UNIT;
+
+  Blockly.BlockSvg.CUSTOM_SHAPES.set(keyName, shapeInfo);
 };
