@@ -2012,6 +2012,7 @@ Blockly.BlockSvg.prototype.renderMoveConnections_ = function() {
 // Stores all user-defined custom shapes
 Blockly.BlockSvg.CUSTOM_SHAPES = new Map([
   /* pre-made shapes */
+  // TODO these must start with native- instead of custom
 ]);
 
 /**
@@ -2030,8 +2031,6 @@ shapeInfo entries ==>
 }
 */
 Blockly.BlockSvg.registerCustomShape(name, shapeInfo) {
-  name = String(name);
-
   if (!name || typeof shapeInfo !== 'object' || Array.isArray(shapeInfo)) {
     console.error([
       `Registration for Shape '${name}' failed`,
@@ -2057,11 +2056,11 @@ Blockly.BlockSvg.registerCustomShape(name, shapeInfo) {
     return;
   }
 
-  const keyName = "custom-" + name;
+  name = "custom-" + String(name);
   shapeInfo.name = name;
 
   // optional value, this default value is constant for all shapes
   if (shapeInfo.emptyInputWidth < 1) shapeInfo.emptyInputWidth = 12 * Blockly.BlockSvg.GRID_UNIT;
 
-  Blockly.BlockSvg.CUSTOM_SHAPES.set(keyName, shapeInfo);
+  Blockly.BlockSvg.CUSTOM_SHAPES.set(name, shapeInfo);
 };
