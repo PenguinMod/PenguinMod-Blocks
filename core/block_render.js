@@ -505,7 +505,6 @@ Blockly.BlockSvg.FIELD_TEXTINPUT_ANIMATE_POSITIONING = false;
  * on its left or right edge, that side is extended by the padding specified.
  * See also: `Blockly.BlockSvg.computeOutputPadding_`.
  */
-// var Blockly = ScratchBlocks;
 Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
   1 : { // Outer shape: hexagon.
     0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in hexagon.
@@ -519,7 +518,7 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     8 : 2 * Blockly.BlockSvg.GRID_UNIT, // Indented in hexagon.
     9 : 2 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in hexagon.
     10: 2 * Blockly.BlockSvg.GRID_UNIT, // Arrow in hexagon.
-    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in hexagon.
+    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Ticket in hexagon.
   },
   2 : { // Outer shape: round.
     0 : 3 * Blockly.BlockSvg.GRID_UNIT, // Field in round.
@@ -533,7 +532,7 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     8 : 3 * Blockly.BlockSvg.GRID_UNIT, // Indented in round.
     9 : 3 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in round.
     10: 3 * Blockly.BlockSvg.GRID_UNIT, // Arrow in round.
-    11: 3 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in round.
+    11: 3 * Blockly.BlockSvg.GRID_UNIT, // Ticket in round.
   },
   3 : { // Outer shape: square.
     0 : 2 * Blockly.BlockSvg.GRID_UNIT, // Field in square.
@@ -547,7 +546,7 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     8 : 2 * Blockly.BlockSvg.GRID_UNIT, // Indented in square.
     9 : 2 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in square.
     10: 2 * Blockly.BlockSvg.GRID_UNIT, // Arrow in square.
-    11: 2 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in square.
+    11: 2 * Blockly.BlockSvg.GRID_UNIT, // Ticket in square.
   },
   4 : { // Outer shape: leaf.
     0 : 3 * Blockly.BlockSvg.GRID_UNIT, // Field in leaf.
@@ -561,7 +560,7 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     8 : 3 * Blockly.BlockSvg.GRID_UNIT, // Indented in leaf.
     9 : 3 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in leaf.
     10: 3 * Blockly.BlockSvg.GRID_UNIT, // Arrow in leaf.
-    11: 2 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in leaf.
+    11: 2 * Blockly.BlockSvg.GRID_UNIT, // Ticket in leaf.
   },
   5 : { // Outer shape: plus.
     0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in plus.
@@ -575,7 +574,7 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     8 : 4 * Blockly.BlockSvg.GRID_UNIT, // Indented in plus.
     9 : 4 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in plus.
     10: 4 * Blockly.BlockSvg.GRID_UNIT, // Arrow in plus.
-    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in plus.
+    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Ticket in plus.
   },
   6 : { // Outer shape: octagon.
     0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in octagon.
@@ -589,7 +588,7 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     8 : 2 * Blockly.BlockSvg.GRID_UNIT, // Indented in octagon.
     9 : 2 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in octagon.
     10: 2 * Blockly.BlockSvg.GRID_UNIT, // Arrow in octagon.
-    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in octagon.
+    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Ticket in octagon.
   },
   7 : { // Outer shape: bumped.
     0 : 3 * Blockly.BlockSvg.GRID_UNIT, // Field in bumped.
@@ -603,7 +602,7 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     8 : 3 * Blockly.BlockSvg.GRID_UNIT, // Indented in bumped.
     9 : 3 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in bumped.
     10: 3 * Blockly.BlockSvg.GRID_UNIT, // Arrow in bumped.
-    11: 3 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in bumped.
+    11: 3 * Blockly.BlockSvg.GRID_UNIT, // Ticket in bumped.
   },
   8 : { // Outer shape: indented.
     0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in indented.
@@ -617,7 +616,7 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     8 : 2 * Blockly.BlockSvg.GRID_UNIT, // Indented in indented.
     9 : 2 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in indented.
     10: 2 * Blockly.BlockSvg.GRID_UNIT, // Arrow in indented.
-    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in indented.
+    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Ticket in indented.
   },
   9 : { // Outer shape: scrapped.
     0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in scrapped.
@@ -631,7 +630,7 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     8 : 2 * Blockly.BlockSvg.GRID_UNIT, // Indented in scrapped.
     9 : 2 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in scrapped.
     10: 2 * Blockly.BlockSvg.GRID_UNIT, // Arrow in scrapped.
-    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in scrapped.
+    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Ticket in scrapped.
   },
   10: { // Outer shape: arrow.
     0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in arrow.
@@ -645,21 +644,21 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     8 : 2 * Blockly.BlockSvg.GRID_UNIT, // Indented in arrow.
     9 : 2 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in arrow.
     10: 2 * Blockly.BlockSvg.GRID_UNIT, // Arrow in arrow.
-    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in arrow.
+    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Ticket in arrow.
   },
-  11: { // Outer shape: bookmark.
-    0 : 2 * Blockly.BlockSvg.GRID_UNIT, // Field in bookmark.
-    1 : 2 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in bookmark.
-    2 : 2 * Blockly.BlockSvg.GRID_UNIT, // Round in bookmark.
-    3 : 2 * Blockly.BlockSvg.GRID_UNIT, // Square in bookmark.
-    4 : 2 * Blockly.BlockSvg.GRID_UNIT, // Leaf in bookmark.
-    5 : 2 * Blockly.BlockSvg.GRID_UNIT, // Plus in bookmark.
-    6 : 2 * Blockly.BlockSvg.GRID_UNIT, // Octagon in bookmark.
-    7 : 2 * Blockly.BlockSvg.GRID_UNIT, // Bumped in bookmark.
-    8 : 2 * Blockly.BlockSvg.GRID_UNIT, // Indented in bookmark.
-    9 : 2 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in bookmark.
-    10: 2 * Blockly.BlockSvg.GRID_UNIT, // Arrow in bookmark.
-    11: 2 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in bookmark.
+  11: { // Outer shape: ticket.
+    0 : 6 * Blockly.BlockSvg.GRID_UNIT, // Field in ticket.
+    1 : 6 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in ticket.
+    2 : 6 * Blockly.BlockSvg.GRID_UNIT, // Round in ticket.
+    3 : 6 * Blockly.BlockSvg.GRID_UNIT, // Square in ticket.
+    4 : 6 * Blockly.BlockSvg.GRID_UNIT, // Leaf in ticket.
+    5 : 6 * Blockly.BlockSvg.GRID_UNIT, // Plus in ticket.
+    6 : 6 * Blockly.BlockSvg.GRID_UNIT, // Octagon in ticket.
+    7 : 6 * Blockly.BlockSvg.GRID_UNIT, // Bumped in ticket.
+    8 : 6 * Blockly.BlockSvg.GRID_UNIT, // Indented in ticket.
+    9 : 6 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in ticket.
+    10: 6 * Blockly.BlockSvg.GRID_UNIT, // Arrow in ticket.
+    11: 6 * Blockly.BlockSvg.GRID_UNIT, // Ticket in ticket.
   },
 };
 
@@ -2150,7 +2149,6 @@ Blockly.BlockSvg.prototype.renderMoveConnections_ = function() {
 };
 
 /* -= Custom Block Shape API =- */
-// var Blockly = ScratchBlocks
 // Stores all user-defined custom shapes
 Blockly.BlockSvg.CUSTOM_SHAPES = new Map([
     /* pre-made shapes */
@@ -2301,6 +2299,41 @@ Blockly.BlockSvg.CUSTOM_SHAPES = new Map([
         },
         blockPaddingEnd: (_, __, lastInput) => {
             return Math.max(((lastInput.renderHeight - Blockly.BlockSvg.MIN_BLOCK_Y_REPORTER)) / 2, 0) + 4;
+        },
+    }],
+    [Blockly.OUTPUT_SHAPE_TICKET, {
+        emptyInputPath: "m 0 0 m 15 0 H 48 z L 0 0 L 0 10 L 7 10 c 4 2 4 9 0 11 L 0 21 L 0 32 L 48 32 L 48 21 L 41 21 c -4 -2 -4 -9 0 -11 L 48 10 L 48 0 z",
+        emptyInputWidth: 12 * Blockly.BlockSvg.GRID_UNIT,
+        // 13.4 is the height of the hole
+        leftPath: (block) => {
+            const w = block.edgeShapeWidth_;
+            return [
+                `h-${w - 1}`,
+                `a 2 2 0 0 1 -2 -2`, // 2unit rounded
+                `v-${w - (13.4 / 2) - 4}`,
+                `a 2 2 0 0 1 2 -2`, // 2unit rounded
+                `h10`,
+                `c4 -2 4 -12 0 -${13.4}`,
+                `h-10`,
+                `a 2 2 0 0 1 -2 -2`, // 2unit rounded
+                `v-${w - (13.4 / 2) - 4}`,
+                `a 2 2 0 0 1 2 -2`, // 2unit rounded
+            ];
+        },
+        rightPath: (block) => {
+            const w = block.edgeShapeWidth_;
+            return [
+                `h${w}`,
+                `a 2 2 0 0 1 2 2`, // 2unit rounded
+                `v${w - (13.4 / 2) - 4}`,
+                `a 2 2 0 0 1 -2 2`, // 2unit rounded
+                `h-10`,
+                `c-4 2 -4 12 0 ${13.4}`,
+                `h10`,
+                `a 2 2 0 0 1 2 2`, // 2unit rounded
+                `v${w - (13.4 / 2) - 4}`,
+                `a 2 2 0 0 1 -2 2`, // 2unit rounded
+            ];
         },
     }],
 ]);

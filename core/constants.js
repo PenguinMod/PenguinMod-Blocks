@@ -297,10 +297,10 @@ Blockly.OUTPUT_SHAPE_SCRAPPED = 9;
 Blockly.OUTPUT_SHAPE_ARROW = 10;
 
 /**
- * ENUM for output shape: bookmark (Dates).
+ * ENUM for output shape: ticket (Dates).
  * @const
  */
-Blockly.OUTPUT_SHAPE_BOOKMARK = 11;
+Blockly.OUTPUT_SHAPE_TICKET = 11;
 
 /**
  * ENUM for categories.
