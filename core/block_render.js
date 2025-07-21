@@ -516,6 +516,10 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     5 : 3 * Blockly.BlockSvg.GRID_UNIT, // Plus in hexagon.
     6 : 2 * Blockly.BlockSvg.GRID_UNIT, // Octagon in hexagon.
     7 : 5 * Blockly.BlockSvg.GRID_UNIT, // Bumped in hexagon.
+    8 : 2 * Blockly.BlockSvg.GRID_UNIT, // Indented in hexagon.
+    9 : 2 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in hexagon.
+    10: 2 * Blockly.BlockSvg.GRID_UNIT, // Arrow in hexagon.
+    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in hexagon.
   },
   2 : { // Outer shape: round.
     0 : 3 * Blockly.BlockSvg.GRID_UNIT, // Field in round.
@@ -526,6 +530,10 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     5 : 2 * Blockly.BlockSvg.GRID_UNIT, // Plus in round.
     6 : 0 * Blockly.BlockSvg.GRID_UNIT, // Octagon in round.
     7 : 1 * Blockly.BlockSvg.GRID_UNIT, // Bumped in round.
+    8 : 3 * Blockly.BlockSvg.GRID_UNIT, // Indented in round.
+    9 : 3 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in round.
+    10: 3 * Blockly.BlockSvg.GRID_UNIT, // Arrow in round.
+    11: 3 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in round.
   },
   3 : { // Outer shape: square.
     0 : 2 * Blockly.BlockSvg.GRID_UNIT, // Field in square.
@@ -536,6 +544,10 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     5 : 2 * Blockly.BlockSvg.GRID_UNIT, // Plus in square.
     6 : 2 * Blockly.BlockSvg.GRID_UNIT, // Octagon in square.
     7 : 2 * Blockly.BlockSvg.GRID_UNIT, // Bumped in square.
+    8 : 2 * Blockly.BlockSvg.GRID_UNIT, // Indented in square.
+    9 : 2 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in square.
+    10: 2 * Blockly.BlockSvg.GRID_UNIT, // Arrow in square.
+    11: 2 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in square.
   },
   4 : { // Outer shape: leaf.
     0 : 3 * Blockly.BlockSvg.GRID_UNIT, // Field in leaf.
@@ -546,6 +558,10 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     5 : 2 * Blockly.BlockSvg.GRID_UNIT, // Plus in leaf.
     6 : 2 * Blockly.BlockSvg.GRID_UNIT, // Octagon in leaf.
     7 : 2 * Blockly.BlockSvg.GRID_UNIT, // Bumped in leaf.
+    8 : 3 * Blockly.BlockSvg.GRID_UNIT, // Indented in leaf.
+    9 : 3 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in leaf.
+    10: 3 * Blockly.BlockSvg.GRID_UNIT, // Arrow in leaf.
+    11: 2 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in leaf.
   },
   5 : { // Outer shape: plus.
     0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in plus.
@@ -556,6 +572,10 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     5 : 3 * Blockly.BlockSvg.GRID_UNIT, // Plus in plus.
     6 : 4 * Blockly.BlockSvg.GRID_UNIT, // Octagon in plus.
     7 : 4 * Blockly.BlockSvg.GRID_UNIT, // Bumped in plus.
+    8 : 4 * Blockly.BlockSvg.GRID_UNIT, // Indented in plus.
+    9 : 4 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in plus.
+    10: 4 * Blockly.BlockSvg.GRID_UNIT, // Arrow in plus.
+    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in plus.
   },
   6 : { // Outer shape: octagon.
     0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in octagon.
@@ -566,6 +586,10 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     5 : 3 * Blockly.BlockSvg.GRID_UNIT, // Plus in octagon.
     6 : 2 * Blockly.BlockSvg.GRID_UNIT, // Octagon in octagon.
     7 : 5 * Blockly.BlockSvg.GRID_UNIT, // Bumped in octagon.
+    8 : 2 * Blockly.BlockSvg.GRID_UNIT, // Indented in octagon.
+    9 : 2 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in octagon.
+    10: 2 * Blockly.BlockSvg.GRID_UNIT, // Arrow in octagon.
+    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in octagon.
   },
   7 : { // Outer shape: bumped.
     0 : 3 * Blockly.BlockSvg.GRID_UNIT, // Field in bumped.
@@ -576,6 +600,66 @@ Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
     5 : 2 * Blockly.BlockSvg.GRID_UNIT, // Plus in bumped.
     6 : 0 * Blockly.BlockSvg.GRID_UNIT, // Octagon in bumped.
     7 : 1 * Blockly.BlockSvg.GRID_UNIT, // Bumped in bumped.
+    8 : 3 * Blockly.BlockSvg.GRID_UNIT, // Indented in bumped.
+    9 : 3 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in bumped.
+    10: 3 * Blockly.BlockSvg.GRID_UNIT, // Arrow in bumped.
+    11: 3 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in bumped.
+  },
+  8 : { // Outer shape: indented.
+    0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in indented.
+    1 : 2 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in indented.
+    2 : 5 * Blockly.BlockSvg.GRID_UNIT, // Round in indented.
+    3 : 5 * Blockly.BlockSvg.GRID_UNIT, // Square in indented.
+    4 : 5 * Blockly.BlockSvg.GRID_UNIT, // Leaf in indented.
+    5 : 3 * Blockly.BlockSvg.GRID_UNIT, // Plus in indented.
+    6 : 2 * Blockly.BlockSvg.GRID_UNIT, // Octagon in indented.
+    7 : 5 * Blockly.BlockSvg.GRID_UNIT, // Bumped in indented.
+    8 : 2 * Blockly.BlockSvg.GRID_UNIT, // Indented in indented.
+    9 : 2 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in indented.
+    10: 2 * Blockly.BlockSvg.GRID_UNIT, // Arrow in indented.
+    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in indented.
+  },
+  9 : { // Outer shape: scrapped.
+    0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in scrapped.
+    1 : 2 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in scrapped.
+    2 : 5 * Blockly.BlockSvg.GRID_UNIT, // Round in scrapped.
+    3 : 5 * Blockly.BlockSvg.GRID_UNIT, // Square in scrapped.
+    4 : 5 * Blockly.BlockSvg.GRID_UNIT, // Leaf in scrapped.
+    5 : 3 * Blockly.BlockSvg.GRID_UNIT, // Plus in scrapped.
+    6 : 2 * Blockly.BlockSvg.GRID_UNIT, // Octagon in scrapped.
+    7 : 5 * Blockly.BlockSvg.GRID_UNIT, // Bumped in scrapped.
+    8 : 2 * Blockly.BlockSvg.GRID_UNIT, // Indented in scrapped.
+    9 : 2 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in scrapped.
+    10: 2 * Blockly.BlockSvg.GRID_UNIT, // Arrow in scrapped.
+    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in scrapped.
+  },
+  10: { // Outer shape: arrow.
+    0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in arrow.
+    1 : 2 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in arrow.
+    2 : 5 * Blockly.BlockSvg.GRID_UNIT, // Round in arrow.
+    3 : 5 * Blockly.BlockSvg.GRID_UNIT, // Square in arrow.
+    4 : 5 * Blockly.BlockSvg.GRID_UNIT, // Leaf in arrow.
+    5 : 3 * Blockly.BlockSvg.GRID_UNIT, // Plus in arrow.
+    6 : 2 * Blockly.BlockSvg.GRID_UNIT, // Octagon in arrow.
+    7 : 5 * Blockly.BlockSvg.GRID_UNIT, // Bumped in arrow.
+    8 : 2 * Blockly.BlockSvg.GRID_UNIT, // Indented in arrow.
+    9 : 2 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in arrow.
+    10: 2 * Blockly.BlockSvg.GRID_UNIT, // Arrow in arrow.
+    11: 5 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in arrow.
+  },
+  11: { // Outer shape: bookmark.
+    0 : 2 * Blockly.BlockSvg.GRID_UNIT, // Field in bookmark.
+    1 : 2 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in bookmark.
+    2 : 2 * Blockly.BlockSvg.GRID_UNIT, // Round in bookmark.
+    3 : 2 * Blockly.BlockSvg.GRID_UNIT, // Square in bookmark.
+    4 : 2 * Blockly.BlockSvg.GRID_UNIT, // Leaf in bookmark.
+    5 : 2 * Blockly.BlockSvg.GRID_UNIT, // Plus in bookmark.
+    6 : 2 * Blockly.BlockSvg.GRID_UNIT, // Octagon in bookmark.
+    7 : 2 * Blockly.BlockSvg.GRID_UNIT, // Bumped in bookmark.
+    8 : 2 * Blockly.BlockSvg.GRID_UNIT, // Indented in bookmark.
+    9 : 2 * Blockly.BlockSvg.GRID_UNIT, // Scrapped in bookmark.
+    10: 2 * Blockly.BlockSvg.GRID_UNIT, // Arrow in bookmark.
+    11: 2 * Blockly.BlockSvg.GRID_UNIT, // Bookmark in bookmark.
   },
 };
 
