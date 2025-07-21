@@ -29,6 +29,7 @@ goog.provide('Blockly.BlockSvg.render');
 goog.require('Blockly.BlockSvg');
 goog.require('Blockly.scratchBlocksUtils');
 goog.require('Blockly.utils');
+goog.require('Blockly.constants');
 
 
 // UI constants for rendering blocks.
@@ -497,6 +498,8 @@ Blockly.BlockSvg.FIELD_TEXTINPUT_EXPAND_PAST_TRUNCATION = false;
  */
 Blockly.BlockSvg.FIELD_TEXTINPUT_ANIMATE_POSITIONING = false;
 
+
+// var ScratchBlocks = Blockly;
 /**
  * Map of output/input shapes and the amount they should cause a block to be padded.
  * Outer key is the outer shape, inner key is the inner shape.
@@ -504,47 +507,62 @@ Blockly.BlockSvg.FIELD_TEXTINPUT_ANIMATE_POSITIONING = false;
  * on its left or right edge, that side is extended by the padding specified.
  * See also: `Blockly.BlockSvg.computeOutputPadding_`.
  */
+// var Blockly = ScratchBlocks;
 Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
-  1: { // Outer shape: hexagon.
-    0: 5 * Blockly.BlockSvg.GRID_UNIT, // Field in hexagon.
-    1: 2 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in hexagon.
-    2: 5 * Blockly.BlockSvg.GRID_UNIT, // Round in hexagon.
-    3: 5 * Blockly.BlockSvg.GRID_UNIT, // Square in hexagon.
-    4: 5 * Blockly.BlockSvg.GRID_UNIT, // Leaf in hexagon.
-    5: 3 * Blockly.BlockSvg.GRID_UNIT // Plus in hexagon.
+  1 : { // Outer shape: hexagon.
+    0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in hexagon.
+    1 : 2 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in hexagon.
+    2 : 5 * Blockly.BlockSvg.GRID_UNIT, // Round in hexagon.
+    3 : 5 * Blockly.BlockSvg.GRID_UNIT, // Square in hexagon.
+    4 : 5 * Blockly.BlockSvg.GRID_UNIT, // Leaf in hexagon.
+    5 : 3 * Blockly.BlockSvg.GRID_UNIT, // Plus in hexagon.
+    6 : 2 * Blockly.BlockSvg.GRID_UNIT, // Octagon in hexagon.
   },
-  2: { // Outer shape: round.
-    0: 3 * Blockly.BlockSvg.GRID_UNIT, // Field in round.
-    1: 3 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in round.
-    2: 1 * Blockly.BlockSvg.GRID_UNIT, // Round in round.
-    3: 3 * Blockly.BlockSvg.GRID_UNIT, // Square in round.
-    4: 3 * Blockly.BlockSvg.GRID_UNIT, // Leaf in round.
-    5: 2 * Blockly.BlockSvg.GRID_UNIT // Plus in round.
+  2 : { // Outer shape: round.
+    0 : 3 * Blockly.BlockSvg.GRID_UNIT, // Field in round.
+    1 : 3 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in round.
+    2 : 1 * Blockly.BlockSvg.GRID_UNIT, // Round in round.
+    3 : 3 * Blockly.BlockSvg.GRID_UNIT, // Square in round.
+    4 : 3 * Blockly.BlockSvg.GRID_UNIT, // Leaf in round.
+    5 : 2 * Blockly.BlockSvg.GRID_UNIT, // Plus in round.
+    6 : 0 * Blockly.BlockSvg.GRID_UNIT, // Octagon in round.
   },
-  3: { // Outer shape: square.
-    0: 2 * Blockly.BlockSvg.GRID_UNIT, // Field in square.
-    1: 2 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in square.
-    2: 2 * Blockly.BlockSvg.GRID_UNIT, // Round in square.
-    3: 2 * Blockly.BlockSvg.GRID_UNIT, // Square in square.
-    4: 2 * Blockly.BlockSvg.GRID_UNIT, // Leaf in square.
-    5: 2 * Blockly.BlockSvg.GRID_UNIT // Plus in square.
+  3 : { // Outer shape: square.
+    0 : 2 * Blockly.BlockSvg.GRID_UNIT, // Field in square.
+    1 : 2 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in square.
+    2 : 2 * Blockly.BlockSvg.GRID_UNIT, // Round in square.
+    3 : 2 * Blockly.BlockSvg.GRID_UNIT, // Square in square.
+    4 : 2 * Blockly.BlockSvg.GRID_UNIT, // Leaf in square.
+    5 : 2 * Blockly.BlockSvg.GRID_UNIT, // Plus in square.
+    6 : 2 * Blockly.BlockSvg.GRID_UNIT, // Octagon in square.
   },
-  4: { // Outer shape: leaf.
-    0: 3 * Blockly.BlockSvg.GRID_UNIT, // Field in leaf.
-    1: 3 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in leaf.
-    2: 2 * Blockly.BlockSvg.GRID_UNIT, // Round in leaf.
-    3: 2 * Blockly.BlockSvg.GRID_UNIT, // Square in leaf.
-    4: 1 * Blockly.BlockSvg.GRID_UNIT, // Leaf in leaf.
-    5: 2 * Blockly.BlockSvg.GRID_UNIT // Plus in leaf.
+  4 : { // Outer shape: leaf.
+    0 : 3 * Blockly.BlockSvg.GRID_UNIT, // Field in leaf.
+    1 : 3 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in leaf.
+    2 : 2 * Blockly.BlockSvg.GRID_UNIT, // Round in leaf.
+    3 : 2 * Blockly.BlockSvg.GRID_UNIT, // Square in leaf.
+    4 : 1 * Blockly.BlockSvg.GRID_UNIT, // Leaf in leaf.
+    5 : 2 * Blockly.BlockSvg.GRID_UNIT, // Plus in leaf.
+    6 : 2 * Blockly.BlockSvg.GRID_UNIT, // Octagon in leaf.
   },
-  5: { // Outer shape: plus.
-    0: 5 * Blockly.BlockSvg.GRID_UNIT, // Field in plus.
-    1: 4 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in plus.
-    2: 4 * Blockly.BlockSvg.GRID_UNIT, // Round in plus.
-    3: 5 * Blockly.BlockSvg.GRID_UNIT, // Square in plus.
-    4: 5 * Blockly.BlockSvg.GRID_UNIT, // Leaf in plus.
-    5: 3 * Blockly.BlockSvg.GRID_UNIT // Plus in plus.
-  }
+  5 : { // Outer shape: plus.
+    0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in plus.
+    1 : 4 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in plus.
+    2 : 4 * Blockly.BlockSvg.GRID_UNIT, // Round in plus.
+    3 : 5 * Blockly.BlockSvg.GRID_UNIT, // Square in plus.
+    4 : 5 * Blockly.BlockSvg.GRID_UNIT, // Leaf in plus.
+    5 : 3 * Blockly.BlockSvg.GRID_UNIT, // Plus in plus.
+    6 : 4 * Blockly.BlockSvg.GRID_UNIT, // Octagon in plus.
+  },
+  6 : { // Outer shape: octagon.
+    0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in octagon.
+    1 : 2 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in octagon.
+    2 : 5 * Blockly.BlockSvg.GRID_UNIT, // Round in octagon.
+    3 : 5 * Blockly.BlockSvg.GRID_UNIT, // Square in octagon.
+    4 : 5 * Blockly.BlockSvg.GRID_UNIT, // Leaf in octagon.
+    5 : 3 * Blockly.BlockSvg.GRID_UNIT, // Plus in octagon.
+    6 : 2 * Blockly.BlockSvg.GRID_UNIT, // Octagon in octagon.
+  },
 };
 
 /**
@@ -1227,6 +1245,11 @@ Blockly.BlockSvg.prototype.computeOutputPadding_ = function(inputRows) {
       row.paddingStart += deltaHeight / 2;
     }
   }
+  
+  const customShape = Blockly.BlockSvg.CUSTOM_SHAPES.get(shape);
+  if (customShape && customShape.blockPaddingStart) {
+    row.paddingStart += customShape.blockPaddingStart(this, otherShape, firstInput, firstField, row);
+  }
 
   const paddingStart = (Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING[shape] || {})[otherShape];
   row.paddingStart += paddingStart === undefined ? Blockly.BlockSvg.DEFAULT_SHAPE_PADDING : paddingStart;
@@ -1258,6 +1281,11 @@ Blockly.BlockSvg.prototype.computeOutputPadding_ = function(inputRows) {
   } else {
     // No input in this row - mark as field.
     otherShape = 0;
+  }
+  
+  if (customShape && customShape.blockPaddingEnd) {
+    const lastField = lastInput.fieldRow[lastInput.fieldRow.length - 1];
+    row.paddingEnd += customShape.blockPaddingEnd(this, otherShape, lastInput, lastField, row);
   }
 
   const paddingEnd = (Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING[shape] || {})[otherShape];
@@ -2024,11 +2052,30 @@ Blockly.BlockSvg.prototype.renderMoveConnections_ = function() {
 };
 
 /* -= Custom Block Shape API =- */
-
+// var Blockly = ScratchBlocks
 // Stores all user-defined custom shapes
 Blockly.BlockSvg.CUSTOM_SHAPES = new Map([
-  /* pre-made shapes */
-  // TODO these must start with native- instead of custom
+    /* pre-made shapes */
+    // NOTE: the keys should be numbers, see src/extension-support/block-shape in VM
+    // Reference: boolean shape -> m 16 0 h 16 (rightPath) l 16 16 l -16 16 h -16 (leftPath) l -16 -16 l 16 -16 z
+    [Blockly.OUTPUT_SHAPE_OCTAGONAL, {
+        emptyInputPath: "M 8 0 h 32 l 8 8 l 0 16 l -8 8 h -32 l -8 -8 l 0 -16 l 8 -8 z",
+        emptyInputWidth: 14 * Blockly.BlockSvg.GRID_UNIT,
+        leftPath: (block) => {
+            const scale = block.height / 2;
+            return [`l ${-scale / 2} ${-scale / 2} l 0 ${-scale} l ${scale / 2} ${-scale / 2}`];
+        },
+        rightPath: (block) => {
+            const scale = block.edgeShapeWidth_;
+            return [`l ${scale / 2} ${scale / 2} l 0 ${scale} l ${-scale / 2} ${scale / 2}`];
+        },
+        blockPaddingStart: (_, __, firstInput) => {
+            return Math.max(((firstInput.renderHeight - Blockly.BlockSvg.MIN_BLOCK_Y_REPORTER) - 4) / 2, 0);
+        },
+        blockPaddingEnd: (_, __, lastInput) => {
+            return Math.max(((lastInput.renderHeight - Blockly.BlockSvg.MIN_BLOCK_Y_REPORTER) - 4) / 2, 0);
+        },
+    }],
 ]);
 
 /**
@@ -2053,6 +2100,8 @@ shapeInfo entries ==>
       // include all keys from Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING and insert the padding as the value
     },
   }
+  blockPaddingStart: (block, otherShape, firstInput, firstField, row) => { return Number } -– Returns a number adding extra padding to the start of the block in 'computeOutputPadding_', used for boolean-like shapes.
+  blockPaddingEnd: (block, otherShape, lastInput, lastField, row) => { return Number } –- Returns a number adding extra padding to the end of the block in 'computeOutputPadding_', used for boolean-like shapes.
 }
 */
 Blockly.BlockSvg.registerCustomShape = function(name, shapeInfo) {
@@ -2065,6 +2114,8 @@ Blockly.BlockSvg.registerCustomShape = function(name, shapeInfo) {
       "'leftPath' (function) -– Returns an array of SVG path parts for the left side of the block",
       "'rightPath' (function) –- Returns an array of SVG path parts for the right side of the block",
       "'blockPadding' (object) -- (optional) Object for block-in-block padding, similar to 'Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING', 'internal' entry for custom block padding, 'external' entry for other shapes padding",
+      "'blockPaddingStart' (function) -- (optional) Returns a number adding extra padding to the start of the block in 'computeOutputPadding_', used for boolean-like shapes.",
+      "'blockPaddingEnd' (function) -- (optional) Returns a number adding extra padding to the end of the block in 'computeOutputPadding_', used for boolean-like shapes.",
     ].join("\n"));
     return;
   }
@@ -2106,6 +2157,16 @@ Blockly.BlockSvg.registerCustomShape = function(name, shapeInfo) {
     } else {
       console.warn(`No 'external' padding object provided in custom shape ${name}, please refer to 'ScratchBlocks.BlockSvg.SHAPE_IN_SHAPE_PADDING', for formatting`);
     }
+  }
+
+  // optional value, just validating it if it exists
+  if (shapeInfo.blockPaddingStart && typeof shapeInfo.blockPaddingStart !== "function") {
+    console.error(`Registration for Shape '${name}' failed\n'blockPaddingStart' entry found in Param 2/entry is not a function`);
+    return;
+  }
+  if (shapeInfo.blockPaddingEnd && typeof shapeInfo.blockPaddingEnd !== "function") {
+    console.error(`Registration for Shape '${name}' failed\n'blockPaddingEnd' entry found in Param 2/entry is not a function`);
+    return;
   }
 
   Blockly.BlockSvg.CUSTOM_SHAPES.set(name, shapeInfo);

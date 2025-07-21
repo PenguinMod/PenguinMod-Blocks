@@ -243,28 +243,64 @@ Blockly.TOOLBOX_AT_RIGHT = 3;
 Blockly.OUTPUT_SHAPE_HEXAGONAL = 1;
 
 /**
- * ENUM for output shape: rounded (numbers).
+ * ENUM for output shape: rounded (numbers/strings).
  * @const
  */
 Blockly.OUTPUT_SHAPE_ROUND = 2;
 
 /**
- * ENUM for output shape: squared (any/all values; strings).
+ * ENUM for output shape: squared (arrays).
  * @const
  */
 Blockly.OUTPUT_SHAPE_SQUARE = 3;
 
 /**
- * ENUM for output shape: leaf (really anything but i (jwklong) made it specifically for som of my extensions).
+ * ENUM for output shape: leaf (vectors).
  * @const
  */
 Blockly.OUTPUT_SHAPE_LEAF = 4;
 
 /**
- * ENUM for output shape: plus (another custom one).
+ * ENUM for output shape: plus (objects/classes or class instances).
  * @const
  */
 Blockly.OUTPUT_SHAPE_PLUS = 5;
+
+/**
+ * ENUM for output shape: octagonal (Scratch targets).
+ * @const
+ */
+Blockly.OUTPUT_SHAPE_OCTAGONAL = 6;
+
+/**
+ * ENUM for output shape: bumped (BigInt).
+ * @const
+ */
+Blockly.OUTPUT_SHAPE_BUMPED = 7;
+
+/**
+ * ENUM for output shape: indented (Symbols).
+ * @const
+ */
+Blockly.OUTPUT_SHAPE_INDENTED = 8;
+
+/**
+ * ENUM for output shape: scrapped (Maps).
+ * @const
+ */
+Blockly.OUTPUT_SHAPE_SCRAPPED = 9;
+
+/**
+ * ENUM for output shape: arrow (Sets).
+ * @const
+ */
+Blockly.OUTPUT_SHAPE_ARROW = 10;
+
+/**
+ * ENUM for output shape: bookmark (Dates).
+ * @const
+ */
+Blockly.OUTPUT_SHAPE_BOOKMARK = 11;
 
 /**
  * ENUM for categories.
