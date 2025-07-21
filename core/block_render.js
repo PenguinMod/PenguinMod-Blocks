@@ -2194,7 +2194,7 @@ Blockly.BlockSvg.CUSTOM_SHAPES = new Map([
     }],
     [Blockly.OUTPUT_SHAPE_INDENTED, {
         emptyInputPath: "M 16 0 h 16 h 16 l -16 16 l 16 16 h -16 h -16 h -16 l 16 -16 l -16 -16 z",
-        emptyInputWidth: 14 * Blockly.BlockSvg.GRID_UNIT,
+        emptyInputWidth: 12 * Blockly.BlockSvg.GRID_UNIT,
         leftPath: (block) => {
             const scale = block.height / 2;
             return [`h ${-scale} l ${scale} ${-scale} l ${-scale} ${-scale}`];
