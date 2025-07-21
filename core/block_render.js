@@ -2192,6 +2192,24 @@ Blockly.BlockSvg.CUSTOM_SHAPES = new Map([
             return Math.max(((lastInput.renderHeight - Blockly.BlockSvg.MIN_BLOCK_Y_REPORTER) + 8) / 2, 16);
         },
     }],
+    [Blockly.OUTPUT_SHAPE_INDENTED, {
+        emptyInputPath: "M 16 0 h 16 h 16 l -16 16 l 16 16 h -16 h -16 h -16 l 16 -16 l -16 -16 z",
+        emptyInputWidth: 14 * Blockly.BlockSvg.GRID_UNIT,
+        leftPath: (block) => {
+            const scale = block.height / 2;
+            return [`h ${-scale} l ${scale} ${-scale} l ${-scale} ${-scale}`];
+        },
+        rightPath: (block) => {
+            const scale = block.edgeShapeWidth_;
+            return [`h ${scale} l ${-scale} ${scale} l ${scale} ${scale} h ${-scale}`];
+        },
+        blockPaddingStart: (_, __, firstInput) => {
+            return Math.max(((firstInput.renderHeight - Blockly.BlockSvg.MIN_BLOCK_Y_REPORTER)) / 2, 0);
+        },
+        blockPaddingEnd: (_, __, lastInput) => {
+            return Math.max(((lastInput.renderHeight - Blockly.BlockSvg.MIN_BLOCK_Y_REPORTER)) / 2, 0);
+        },
+    }],
 ]);
 
 /**
