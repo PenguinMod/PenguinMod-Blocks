@@ -2210,6 +2210,45 @@ Blockly.BlockSvg.CUSTOM_SHAPES = new Map([
             return Math.max(((lastInput.renderHeight - Blockly.BlockSvg.MIN_BLOCK_Y_REPORTER)) / 2, 0);
         },
     }],
+    [Blockly.OUTPUT_SHAPE_SCRAPPED, {
+        emptyInputPath: "M 16 0 h 16 h 16 l -6 10 l -4 1 l 4 2 v 6 l -4 2 l 4 1 l 6 10 h -16 h -16 h -16 l 6 -10 l 4 -1 l -4 -2 v -6 l 4 -2 l -4 -1 l -6 -10 z",
+        emptyInputWidth: 12 * Blockly.BlockSvg.GRID_UNIT,
+        leftPath: (block) => {
+            const scale = block.height / 2;
+            const s = scale / 16;
+            return [
+                `h ${-16 * s}`,
+                `l ${6 * s} ${-10 * s}`,
+                `l ${4 * s} ${-1 * s}`,
+                `l ${-4 * s} ${-2 * s}`,
+                `v ${-6 * s}`,
+                `l ${4 * s} ${-2 * s}`,
+                `l ${-4 * s} ${-1 * s}`,
+                `l ${-6 * s} ${-10 * s}`,
+            ];
+        },
+        rightPath: (block) => {
+            const scale = block.edgeShapeWidth_;
+            const s = scale / 16;
+            return [
+                `h ${16 * s}`,
+                `l ${-6 * s} ${10 * s}`,
+                `l ${-4 * s} ${1 * s}`,
+                `l ${4 * s} ${2 * s}`,
+                `v ${6 * s}`,
+                `l ${-4 * s} ${2 * s}`,
+                `l ${4 * s} ${1 * s}`,
+                `l ${6 * s} ${10 * s}`,
+                `h ${-16 * s}`,
+            ];
+        },
+        blockPaddingStart: (_, __, firstInput) => {
+            return Math.max(((firstInput.renderHeight - Blockly.BlockSvg.MIN_BLOCK_Y_REPORTER)) / 3, 0);
+        },
+        blockPaddingEnd: (_, __, lastInput) => {
+            return Math.max(((lastInput.renderHeight - Blockly.BlockSvg.MIN_BLOCK_Y_REPORTER)) / 3, 0);
+        },
+    }],
 ]);
 
 /**
