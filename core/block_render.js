@@ -2204,10 +2204,10 @@ Blockly.BlockSvg.CUSTOM_SHAPES = new Map([
             return [`h ${scale} l ${-scale} ${scale} l ${scale} ${scale} h ${-scale}`];
         },
         blockPaddingStart: (_, __, firstInput) => {
-            return Math.max(((firstInput.renderHeight - Blockly.BlockSvg.MIN_BLOCK_Y_REPORTER)) / 2, 0);
+            return Math.max(((firstInput.renderHeight - Blockly.BlockSvg.MIN_BLOCK_Y_REPORTER)) / 2, 0) + 4;
         },
         blockPaddingEnd: (_, __, lastInput) => {
-            return Math.max(((lastInput.renderHeight - Blockly.BlockSvg.MIN_BLOCK_Y_REPORTER)) / 2, 0);
+            return Math.max(((lastInput.renderHeight - Blockly.BlockSvg.MIN_BLOCK_Y_REPORTER)) / 2, 0) + 4;
         },
     }],
     [Blockly.OUTPUT_SHAPE_SCRAPPED, {
