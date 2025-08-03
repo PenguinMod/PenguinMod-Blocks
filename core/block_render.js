@@ -2263,6 +2263,21 @@ Blockly.BlockSvg.registerCustomNotch = function(name, path) {
   }
 };
 
+// Preset custom notches.
+Blockly.BlockSvg.registerCustomNotch("inverted", `c 2 0 3 -1 4 -2 l 4 -4 c 1 -1 2 -2 4 -2 h 12 c 2 0 3 1 4 2 l 4 4 c 1 1 2 2 4 2`);
+Blockly.BlockSvg.registerCustomNotch("jigsaw", `l 9 0 c 2 0 4 1 4 2 c 0 2 -4 1 -4 4 c 0 1 2 2 4 2 h 10 c 2 0 4 -1 4 -2 c 0 -3 -4 -2 -4 -4 c 0 -1 2 -2 4 -2 l 9 0`);
+Blockly.BlockSvg.registerCustomNotch("hexagon", `l 6 0 c 1 0 2 1 2 2 l 0 2 l 10 6 l 10 -6 l 0 -2 c 0 -1 1 -2 2 -2 l 6 0`);
+Blockly.BlockSvg.registerCustomNotch("round", `l 4 0 c 2 0 4 2 4 4 a 1 1 0 0 0 20 0 c 0 -2 2 -4 4 -4 l 4 0`);
+Blockly.BlockSvg.registerCustomNotch("square", `l 2 0 c 1 0 2 1 2 2 l 0 4 c 0 1 1 2 2 2 h 24 c 1 0 2 -1 2 -2 l 0 -4 c 0 -1 1 -2 2 -2 l 2 0`);
+Blockly.BlockSvg.registerCustomNotch("leaf", `l 5 0 c 1 0 2 1 3 2 l 4 4 c 4 4 8 4 12 0 l 4 -4 c 1 -1 2 -2 3 -2 l 5 0`);
+Blockly.BlockSvg.registerCustomNotch("plus", `l 6 0 c 1 0 2 1 2 2 c 0 1 1 2 2 2 l 2 0 c 1 0 2 1 2 2 c 0 1 1 2 2 2 l 4 0 c 1 0 2 -1 2 -2 c 0 -1 1 -2 2 -2 l 2 0 c 1 0 2 -1 2 -2 c 0 -1 1 -2 2 -2 l 6 0`);
+Blockly.BlockSvg.registerCustomNotch("octagonal", `l 6 0 c 1 0 2 1 2 2 l 0 2 l 5 5 l 10 0 l 5 -5 l 0 -2 c 0 -1 1 -2 2 -2 l 6 0`);
+Blockly.BlockSvg.registerCustomNotch("bumped", `l 6 0 c 1 0 2 1 2 2 l 0 2 c 0 6 10 6 10 0 c 0 6 10 6 10 0 l 0 -2 c 0 -1 1 -2 2 -2 l 6 0`);
+Blockly.BlockSvg.registerCustomNotch("indented", `l 6 0 c 1 0 2 1 2 2 l 0 6 l 10 -5 l 10 5 l 0 -6 c 0 -1 1 -2 2 -2 l 6 0`);
+Blockly.BlockSvg.registerCustomNotch("scrapped", `l 6 0 c 1 0 2 1 2 2 l 0 5 l 4 -2 l 1 -2 l 1 3 l 8 0 l 1 -3 l 1 2 l 4 2 l 0 -5 c 0 -1 1 -2 2 -2 l 6 0`);
+Blockly.BlockSvg.registerCustomNotch("arrow", `l 12 0 c 1 0 2 1 2 2 c 0 1 -1 2 -2 2 l -10 0 l 12 3 c 4 1 4 1 8 0 l 12 -3 l -10 0 c -1 0 -2 -1 -2 -2 c 0 -1 1 -2 2 -2 l 12 0`);
+Blockly.BlockSvg.registerCustomNotch("ticket", `l 6 0 c 1 0 2 1 2 2 l 0 6 l 8 0 l 0 -4 c 0 -3 4 -3 4 0 l 0 4 l 8 0 l 0 -6 c 0 -1 1 -2 2 -2 l 6 0`);
+Blockly.BlockSvg.registerCustomNotch("pincer", `c 2 0 3 1 4 2 l 4 4 c 1 1 2 2 4 2 l 1 0 l 0 -2 l -1 0 c -2 0 -3 -2 -4 -3 l 5 1 l 5 -2 l 5 2 l 5 -1 c -1 1 -2 3 -4 3 l -1 0 l 0 2 l 1 0 c 2 0 3 -1 4 -2 l 4 -4 c 1 -1 2 -2 4 -2`);
 
 /* -= Custom Block Shape API =- */
 // Stores all user-defined custom shapes
