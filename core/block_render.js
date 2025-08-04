@@ -168,22 +168,6 @@ Blockly.BlockSvg.NOTCH_PATH_LEFT = `c 2 0 3 1 4 2 l 4 4 c 1 1 2 2 4 2 h 12 c 2 0
 Blockly.BlockSvg.NOTCH_PATH_RIGHT = `c -2 0 -3 1 -4 2 l -4 4 c -1 1 -2 2 -4 2 h -12 c -2 0 -3 -1 -4 -2 l -4 -4 c -1 -1 -2 -2 -4 -2`;
 
 /**
- * @const
- */
-Blockly.BlockSvg.NOTCH_SWITCH_PATH_LEFT = `c 2 0 3 1 4 2 l 4 4 c 1 1 2 2 4 2 c 2 0 4 -4 6 -4 c 2 0 4 4 6 4 c 2 0 3 -1 4 -2 l 4 -4 c 1 -1 2 -2 4 -2`;
-
-/**
- * @const
- */
-Blockly.BlockSvg.NOTCH_SWITCH_PATH_RIGHT = `c -2 0 -3 1 -4 2 l -4 4 c -1 1 -2 2 -4 2 c -2 0 -4 -4 -6 -4 c -2 0 -4 4 -6 4 c -2 0 -3 -1 -4 -2 l -4 -4 c -1 -1 -2 -2 -4 -2`;
-
-/**
- * @const
- * @type {boolean}
- */
-Blockly.BlockSvg.NOTCH_SWITCH_ENABLE = true
-
-/**
  * Amount of padding before the notch.
  * @const
  */
@@ -1542,15 +1526,13 @@ Blockly.BlockSvg.prototype.renderDrawTop_ = function(steps, rightEdge) {
     if (this.previousConnection) {
       // Space before the notch
       steps.push('H', Blockly.BlockSvg.NOTCH_START_PADDING);
-      if (Blockly.BlockSvg.NOTCH_SWITCH_ENABLE && (this.previousConnection.check_ || []).includes("switchCase")) {
-        steps.push(Blockly.BlockSvg.NOTCH_SWITCH_PATH_LEFT);
-      } else {
-        // this could be a custom notch
-        const checkStatement = (this.previousConnection.check_ || [])[0];
-        const customNotch = Blockly.BlockSvg.CUSTOM_NOTCHES.get(checkStatement);
-        if (customNotch) steps.push(customNotch.left);
-        else steps.push(Blockly.BlockSvg.NOTCH_PATH_LEFT);
-      }
+
+      // if we have a custom check that corresponds to a custom notch, use it
+      const checkStatement = (this.previousConnection.check_ || [])[0];
+      const customNotch = Blockly.BlockSvg.CUSTOM_NOTCHES.get(checkStatement);
+      if (customNotch) steps.push(customNotch.left);
+      else steps.push(Blockly.BlockSvg.NOTCH_PATH_LEFT);
+
       // Create previous block connection.
       var connectionX = (this.RTL ?
           -Blockly.BlockSvg.NOTCH_WIDTH : Blockly.BlockSvg.NOTCH_WIDTH);
@@ -1743,15 +1725,13 @@ Blockly.BlockSvg.prototype.renderDrawBottom_ = function(steps, cursorY) {
       Blockly.BlockSvg.CORNER_RADIUS
     );
     steps.push('H', notchStart, ' ');
-    if (Blockly.BlockSvg.NOTCH_SWITCH_ENABLE && (this.nextConnection.check_ || []).includes("switchCase")) {
-      steps.push(Blockly.BlockSvg.NOTCH_SWITCH_PATH_RIGHT);
-    } else {
-      // this could be a custom notch
-      const checkStatement = (this.nextConnection.check_ || [])[0];
-      const customNotch = Blockly.BlockSvg.CUSTOM_NOTCHES.get(checkStatement);
-      if (customNotch) steps.push(customNotch.right);
-      else steps.push(Blockly.BlockSvg.NOTCH_PATH_RIGHT);
-    }
+ 
+    // if we have a custom check that corresponds to a custom notch, use it
+    const checkStatement = (this.nextConnection.check_ || [])[0];
+    const customNotch = Blockly.BlockSvg.CUSTOM_NOTCHES.get(checkStatement);
+    if (customNotch) steps.push(customNotch.right);
+    else steps.push(Blockly.BlockSvg.NOTCH_PATH_RIGHT);
+
     // Create next block connection.
     var connectionX = this.RTL ? -Blockly.BlockSvg.NOTCH_WIDTH :
         Blockly.BlockSvg.NOTCH_WIDTH;
@@ -1950,15 +1930,13 @@ Blockly.BlockSvg.drawStatementInputTop_ = function(steps, cursorX, row, block) {
   steps.push(Blockly.BlockSvg.BOTTOM_RIGHT_CORNER);
   steps.push('H', cursorX + Blockly.BlockSvg.STATEMENT_INPUT_INNER_SPACE +
     2 * Blockly.BlockSvg.CORNER_RADIUS + block.edgeShapeWidth_);
-  if (Blockly.BlockSvg.NOTCH_SWITCH_ENABLE && row[0].connection && (row[0].connection.check_ || []).includes("switchCase")) {
-    steps.push(Blockly.BlockSvg.NOTCH_SWITCH_PATH_RIGHT);
-  } else {
-    // this could be a custom notch
-    const checkStatement = (row[0].connection.check_ || [])[0];
-    const customNotch = Blockly.BlockSvg.CUSTOM_NOTCHES.get(checkStatement);
-    if (customNotch) steps.push(customNotch.right);
-    else steps.push(Blockly.BlockSvg.NOTCH_PATH_RIGHT);
-  }
+
+  // if we have a custom check that corresponds to a custom notch, use it
+  const checkStatement = (row[0].connection.check_ || [])[0];
+  const customNotch = Blockly.BlockSvg.CUSTOM_NOTCHES.get(checkStatement);
+  if (customNotch) steps.push(customNotch.right);
+  else steps.push(Blockly.BlockSvg.NOTCH_PATH_RIGHT);
+
   steps.push('h', '-' + Blockly.BlockSvg.STATEMENT_INPUT_INNER_SPACE);
   steps.push(Blockly.BlockSvg.INNER_TOP_LEFT_CORNER);
 };
@@ -1978,15 +1956,12 @@ Blockly.BlockSvg.drawStatementInputBottom_ = function(steps, rightEdge, row, blo
   steps.push(Blockly.BlockSvg.INNER_BOTTOM_LEFT_CORNER);
   if (row.statementNotchAtBottom) {
     steps.push('h ', Blockly.BlockSvg.STATEMENT_INPUT_INNER_SPACE);
-    if (Blockly.BlockSvg.NOTCH_SWITCH_ENABLE && row[0].connection && (row[0].connection.check_ || []).includes("switchCase")) {
-      steps.push(Blockly.BlockSvg.NOTCH_SWITCH_PATH_LEFT);
-    } else {
-      // this could be a custom notch
-      const checkStatement = (row[0].connection.check_ || [])[0];
-      const customNotch = Blockly.BlockSvg.CUSTOM_NOTCHES.get(checkStatement);
-      if (customNotch) steps.push(customNotch.left);
-      else steps.push(Blockly.BlockSvg.NOTCH_PATH_LEFT);
-    }
+
+    // if we have a custom check that corresponds to a custom notch, use it
+    const checkStatement = (row[0].connection.check_ || [])[0];
+    const customNotch = Blockly.BlockSvg.CUSTOM_NOTCHES.get(checkStatement);
+    if (customNotch) steps.push(customNotch.left);
+    else steps.push(Blockly.BlockSvg.NOTCH_PATH_LEFT);
   }
   steps.push('H', rightEdge - Blockly.BlockSvg.CORNER_RADIUS);
 };
@@ -2237,6 +2212,23 @@ Blockly.BlockSvg.CUSTOM_NOTCH_UTIL = {
 // Stores all user-defined custom shapes
 Blockly.BlockSvg.CUSTOM_NOTCHES = new Map([]);
 
+// Preset custom notches
+Blockly.BlockSvg.registerCustomNotch("switchCase", `c 2 0 3 1 4 2 l 4 4 c 1 1 2 2 4 2 c 2 0 4 -4 6 -4 c 2 0 4 4 6 4 c 2 0 3 -1 4 -2 l 4 -4 c 1 -1 2 -2 4 -2`);
+Blockly.BlockSvg.registerCustomNotch("jigsaw", `l 9 0 c 2 0 4 1 4 2 c 0 2 -4 1 -4 4 c 0 1 2 2 4 2 h 10 c 2 0 4 -1 4 -2 c 0 -3 -4 -2 -4 -4 c 0 -1 2 -2 4 -2 l 9 0`);
+Blockly.BlockSvg.registerCustomNotch("hexagon", `l 6 0 c 1 0 2 1 2 2 l 0 2 l 10 6 l 10 -6 l 0 -2 c 0 -1 1 -2 2 -2 l 6 0`);
+Blockly.BlockSvg.registerCustomNotch("round", `l 4 0 c 2 0 4 2 4 4 c 2 9 18 9 20 0 c 0 -2 2 -4 4 -4 l 4 0`);
+Blockly.BlockSvg.registerCustomNotch("square", `l 2 0 c 1 0 2 1 2 2 l 0 4 c 0 1 1 2 2 2 h 24 c 1 0 2 -1 2 -2 l 0 -4 c 0 -1 1 -2 2 -2 l 2 0`);
+Blockly.BlockSvg.registerCustomNotch("leaf", `l 5 0 c 1 0 2 1 3 2 l 4 4 c 4 4 8 4 12 0 l 4 -4 c 1 -1 2 -2 3 -2 l 5 0`);
+Blockly.BlockSvg.registerCustomNotch("plus", `l 6 0 c 1 0 2 1 2 2 c 0 1 1 2 2 2 l 2 0 c 1 0 2 1 2 2 c 0 1 1 2 2 2 l 4 0 c 1 0 2 -1 2 -2 c 0 -1 1 -2 2 -2 l 2 0 c 1 0 2 -1 2 -2 c 0 -1 1 -2 2 -2 l 6 0`);
+Blockly.BlockSvg.registerCustomNotch("octagonal", `l 6 0 c 1 0 2 1 2 2 l 0 2 l 5 5 l 10 0 l 5 -5 l 0 -2 c 0 -1 1 -2 2 -2 l 6 0`);
+Blockly.BlockSvg.registerCustomNotch("bumped", `l 6 0 c 1 0 2 1 2 2 l 0 2 c 0 6 10 6 10 0 c 0 6 10 6 10 0 l 0 -2 c 0 -1 1 -2 2 -2 l 6 0`);
+Blockly.BlockSvg.registerCustomNotch("indented", `l 6 0 c 1 0 2 1 2 2 l 0 6 l 10 -5 l 10 5 l 0 -6 c 0 -1 1 -2 2 -2 l 6 0`);
+Blockly.BlockSvg.registerCustomNotch("scrapped", `l 6 0 c 1 0 2 1 2 2 l 0 5 l 4 -2 l 1 -2 l 1 3 l 8 0 l 1 -3 l 1 2 l 4 2 l 0 -5 c 0 -1 1 -2 2 -2 l 6 0`);
+Blockly.BlockSvg.registerCustomNotch("arrow", `l 7 0 c 1 0 2 1 2 2 c 0 1 -1 2 -2 2 l -5 0 l 12 3 c 4 1 4 1 8 0 l 12 -3 l -5 0 c -1 0 -2 -1 -2 -2 c 0 -1 1 -2 2 -2 l 7 0`);
+Blockly.BlockSvg.registerCustomNotch("ticket", `l 6 0 c 1 0 2 1 2 2 l 0 6 l 8 0 l 0 -4 c 0 -3 4 -3 4 0 l 0 4 l 8 0 l 0 -6 c 0 -1 1 -2 2 -2 l 6 0`);
+Blockly.BlockSvg.registerCustomNotch("pincer", `c 2 0 3 1 4 2 l 4 4 c 1 1 2 2 4 2 l 1 0 l 0 -2 l -1 0 c -2 0 -3 -2 -4 -3 l 5 1 l 5 -2 l 5 2 l 5 -1 c -1 1 -2 3 -4 3 l -1 0 l 0 2 l 1 0 c 2 0 3 -1 4 -2 l 4 -4 c 1 -1 2 -2 4 -2`);
+Blockly.BlockSvg.registerCustomNotch("inverted", `c 2 0 3 -1 4 -2 l 4 -4 c 1 -1 2 -2 4 -2 h 12 c 2 0 3 1 4 2 l 4 4 c 1 1 2 2 4 2`);
+
 /**
  * Register a custom block notch
  * @param {string} name The name used to identify the custom notch
@@ -2262,22 +2254,6 @@ Blockly.BlockSvg.registerCustomNotch = function(name, path) {
     console.error(err);
   }
 };
-
-// Preset custom notches.
-Blockly.BlockSvg.registerCustomNotch("inverted", `c 2 0 3 -1 4 -2 l 4 -4 c 1 -1 2 -2 4 -2 h 12 c 2 0 3 1 4 2 l 4 4 c 1 1 2 2 4 2`);
-Blockly.BlockSvg.registerCustomNotch("jigsaw", `l 9 0 c 2 0 4 1 4 2 c 0 2 -4 1 -4 4 c 0 1 2 2 4 2 h 10 c 2 0 4 -1 4 -2 c 0 -3 -4 -2 -4 -4 c 0 -1 2 -2 4 -2 l 9 0`);
-Blockly.BlockSvg.registerCustomNotch("hexagon", `l 6 0 c 1 0 2 1 2 2 l 0 2 l 10 6 l 10 -6 l 0 -2 c 0 -1 1 -2 2 -2 l 6 0`);
-Blockly.BlockSvg.registerCustomNotch("round", `l 4 0 c 2 0 4 2 4 4 a 1 1 0 0 0 20 0 c 0 -2 2 -4 4 -4 l 4 0`);
-Blockly.BlockSvg.registerCustomNotch("square", `l 2 0 c 1 0 2 1 2 2 l 0 4 c 0 1 1 2 2 2 h 24 c 1 0 2 -1 2 -2 l 0 -4 c 0 -1 1 -2 2 -2 l 2 0`);
-Blockly.BlockSvg.registerCustomNotch("leaf", `l 5 0 c 1 0 2 1 3 2 l 4 4 c 4 4 8 4 12 0 l 4 -4 c 1 -1 2 -2 3 -2 l 5 0`);
-Blockly.BlockSvg.registerCustomNotch("plus", `l 6 0 c 1 0 2 1 2 2 c 0 1 1 2 2 2 l 2 0 c 1 0 2 1 2 2 c 0 1 1 2 2 2 l 4 0 c 1 0 2 -1 2 -2 c 0 -1 1 -2 2 -2 l 2 0 c 1 0 2 -1 2 -2 c 0 -1 1 -2 2 -2 l 6 0`);
-Blockly.BlockSvg.registerCustomNotch("octagonal", `l 6 0 c 1 0 2 1 2 2 l 0 2 l 5 5 l 10 0 l 5 -5 l 0 -2 c 0 -1 1 -2 2 -2 l 6 0`);
-Blockly.BlockSvg.registerCustomNotch("bumped", `l 6 0 c 1 0 2 1 2 2 l 0 2 c 0 6 10 6 10 0 c 0 6 10 6 10 0 l 0 -2 c 0 -1 1 -2 2 -2 l 6 0`);
-Blockly.BlockSvg.registerCustomNotch("indented", `l 6 0 c 1 0 2 1 2 2 l 0 6 l 10 -5 l 10 5 l 0 -6 c 0 -1 1 -2 2 -2 l 6 0`);
-Blockly.BlockSvg.registerCustomNotch("scrapped", `l 6 0 c 1 0 2 1 2 2 l 0 5 l 4 -2 l 1 -2 l 1 3 l 8 0 l 1 -3 l 1 2 l 4 2 l 0 -5 c 0 -1 1 -2 2 -2 l 6 0`);
-Blockly.BlockSvg.registerCustomNotch("arrow", `l 12 0 c 1 0 2 1 2 2 c 0 1 -1 2 -2 2 l -10 0 l 12 3 c 4 1 4 1 8 0 l 12 -3 l -10 0 c -1 0 -2 -1 -2 -2 c 0 -1 1 -2 2 -2 l 12 0`);
-Blockly.BlockSvg.registerCustomNotch("ticket", `l 6 0 c 1 0 2 1 2 2 l 0 6 l 8 0 l 0 -4 c 0 -3 4 -3 4 0 l 0 4 l 8 0 l 0 -6 c 0 -1 1 -2 2 -2 l 6 0`);
-Blockly.BlockSvg.registerCustomNotch("pincer", `c 2 0 3 1 4 2 l 4 4 c 1 1 2 2 4 2 l 1 0 l 0 -2 l -1 0 c -2 0 -3 -2 -4 -3 l 5 1 l 5 -2 l 5 2 l 5 -1 c -1 1 -2 3 -4 3 l -1 0 l 0 2 l 1 0 c 2 0 3 -1 4 -2 l 4 -4 c 1 -1 2 -2 4 -2`);
 
 /* -= Custom Block Shape API =- */
 // Stores all user-defined custom shapes
