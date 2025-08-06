@@ -149,7 +149,13 @@ Blockly.Icon.prototype.updateColour = function() {
  * @param {number} cursorX Horizontal offset at which to position the icon.
  * @return {number} Horizontal offset for next item to draw.
  */
+
 Blockly.Icon.prototype.renderIcon = function(cursorX) {
+  if (!this.iconGroup_) {
+    // dummy group
+    this.iconGroup_ = Blockly.utils.createSvgElement('g',
+      {'class': 'blocklyIconGroup'}, null);
+  }
   if (this.collapseHidden && this.block_.isCollapsed()) {
     this.iconGroup_.setAttribute('display', 'none');
     return cursorX;
