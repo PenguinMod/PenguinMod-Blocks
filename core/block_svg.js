@@ -1045,15 +1045,16 @@ Blockly.BlockSvg.prototype.setWarningText = function(text, opt_id) {
 /**
  * Give this block a mutator dialog.
  * @param {Blockly.Mutator} mutator A mutator dialog instance or null to remove.
+ * @param {Boolean} forceCreate Boolean for wether or not we should create the icon for the mutator
  */
-Blockly.BlockSvg.prototype.setMutator = function(mutator) {
+Blockly.BlockSvg.prototype.setMutator = function(mutator, forceCreate) {
   if (this.mutator && this.mutator !== mutator) {
     this.mutator.dispose();
   }
   if (mutator) {
     mutator.block_ = this;
     this.mutator = mutator;
-    mutator.createIcon();
+    if (forceCreate) mutator.createIcon();
   }
 };
 
