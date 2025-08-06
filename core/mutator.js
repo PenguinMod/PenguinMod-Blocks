@@ -101,18 +101,6 @@ Blockly.Mutator.prototype.drawIcon_ = function(group) {
       group);
 };
 
-
-Blockly.BlockSvg.prototype.setMutator = function(mutator, forceCreate) {
-  if (this.mutator && this.mutator !== mutator) {
-    this.mutator.dispose();
-  }
-  if (mutator) {
-    mutator.block_ = this;
-    this.mutator = mutator;
-    if (forceCreate) mutator.createIcon();
-  }
-};
-
 /**
  * Clicking on the icon toggles if the mutator bubble is visible.
  * Disable if block is uneditable.
