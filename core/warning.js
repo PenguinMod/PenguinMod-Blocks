@@ -60,7 +60,7 @@ Blockly.Warning.prototype.drawIcon_ = function(group) {
   Blockly.utils.createSvgElement('path',
       {
         'class': 'blocklyIconShape',
-        'd': 'M2,15Q-1,15 0.5,12L6.5,1.7Q8,-1 9.5,1.7L15.5,12Q17,15 14,15z'
+        'd': 'M.5 16.75Q-3.25 16.75-1.375 13L6.125.125Q8-3.25 9.875.125L17.375 13Q19.25 16.75 15.5 16.75z'
       },
       group);
   // Can't use a real '!' text character since different browsers and operating
