@@ -202,6 +202,34 @@ Blockly.Blocks['motion_mutatorCheckboxTest'] = {
   }
 };
 
+/* custom button field */
+Blockly.FieldCustom.registerInput(
+  'TEST_BUTTON',
+  (() => {
+    const div = document.createElement("div");
+    div.setAttribute("style", `width: 32px; height: 32px; padding: 6px 10px; border-radius: 4px; border: solid 1.5px #00000030;`);
+    return div;
+  })(),
+  (field, input) => {
+    /* on init */
+    const srcBlock = field.sourceBlock_;
+
+    input.textContent = "alert";
+    input.style.width = "max-content";
+    input.style.color = srcBlock.textColor ? srcBlock.textColor : "#fff";
+
+    const properWidth = goog.style.getSize(input).width;
+    input.style.width = properWidth + "px";
+    input.parentNode.setAttribute("width", properWidth);
+    field.size_.width = properWidth;
+    srcBlock.render(false);
+  },
+  () => {
+    /* on click */
+    alert("wow");
+  },
+  () => { /* not needed */ }
+);
 Blockly.Blocks['control_fieldbutton'] = {
   /**
    * @this Blockly.Block
@@ -211,9 +239,8 @@ Blockly.Blocks['control_fieldbutton'] = {
       "message0": 'button %1',
       "args0": [
         {
-          "type": "field_button",
-          "name": "BUTTON",
-          "label": "alert",
+          "type": "field_customInput",
+          "name": "TEST_BUTTON",
           "opcode": "alert"
         }
       ],
@@ -221,14 +248,6 @@ Blockly.Blocks['control_fieldbutton'] = {
       "extensions": ["colours_control", "shape_statement"]
     });
   },
-
-  onFieldButtonClicked_: function (opcode) {
-    if (opcode === "alert") {
-      alert('wow');
-    } else if (opcode === "flaberghasted") {
-      alert(':rivflabbergasted:')
-    }
-  }
 };
 
 Blockly.Blocks['control_fieldcheckboxoriginal'] = {
