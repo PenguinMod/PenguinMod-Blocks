@@ -72,6 +72,8 @@ Blockly.FieldExpandableAdd.prototype.init = function() {
   }
   Blockly.FieldExpandableAdd.superClass_.init.call(this);
 
+  this.size_.width = 32;
+  this.EDITABLE = false;
   this.boxGroup_ = Blockly.utils.createSvgElement('g', {}, null);
   this.box_ = Blockly.utils.createSvgElement('rect',
     {
@@ -89,9 +91,9 @@ Blockly.FieldExpandableAdd.prototype.init = function() {
   );
   this.icon_ = Blockly.utils.createSvgElement('image',
     {
-      'x': 2.5,
+      'x': 5,
       'y': 5,
-      'width': this.size_.height / 1.5,
+      'width': this.size_.width / 1.5,
       'height': this.size_.height / 1.5,
       'href': plusIcon,
     },
