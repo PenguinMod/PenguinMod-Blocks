@@ -518,6 +518,102 @@ Blockly.Blocks['operator_join3'] = {
   }
 };
 
+
+Blockly.Blocks['operators_expandablejoininputs'] = {
+  /**
+   * pm: Block for joining strings together (determined by user)
+   * @this Blockly.Block
+   */
+  init: function () {
+    this.jsonInit({
+      "message0": 'join %1 %2',
+      "args0": [
+        {
+          "type": "field_expandable_remove",
+          "name": "REMOVE"
+        },
+        {
+          "type": "field_expandable_add",
+          "name": "ADD"
+        }
+      ],
+      "category": Blockly.Categories.operators,
+      "extensions": ["colours_operators", "output_string"]
+    });
+
+    this.messageList = ["apple", "banana", "pear", "orange", "mango", "strawberry", "pineapple", "grape", "kiwi"];
+    this.inputs_ = 2;
+    if (this.isInFlyout) {
+      for (let i = 0; i < this.inputs_; i++) {
+        const input = this.appendValueInput(`INPUT${i + 1}`);
+        this.fillInBlock(input.connection, i);
+      }
+    }
+  },
+
+  fillInBlock: function (connection, index) {
+    if (connection.sourceBlock_.isInsertionMarker_) return;
+    const block = this.workspace.newBlock('text');
+    const text = this.messageList[index];
+    block.setFieldValue(text ? text : "...", "TEXT");
+    block.setShadow(true);
+    block.initSvg();
+    block.render(true);
+    block.outputConnection.connect(connection);
+  },
+
+  mutationToDom: function () {
+    // on save
+    const container = document.createElement("mutation");
+    let number = Number(this.inputs_);
+    if (isNaN(number)) number = 1;
+    container.setAttribute("inputcount", String(number));
+    return container;
+  },
+
+  domToMutation: function (xmlElement) {
+    // on load
+    const inputCount = Number(xmlElement.getAttribute("inputcount"));
+    this.inputs_ = isNaN(inputCount) ? 0 : inputCount;
+    for (let i = 0; i < this.inputs_; i++) {
+      const input = this.appendValueInput(`INPUT${i + 1}`);
+      this.fillInBlock(input.connection, i);
+    }
+    queueMicrotask(() => {
+      const connections = this.getConnections_();
+      for (let i = 1; i < connections.length; i++) {
+        const block = connections[i].targetBlock();
+        if (!block) continue;
+        if (!block.category_ && !block.isShadow()) block.dispose();
+      }
+    });
+  },
+
+  onExpandableButtonClicked_: function (isAdding) {
+    // Create an event group to keep field value and mutator in sync
+    // Return null at the end because setValue is called here already.
+    Blockly.Events.setGroup(true);
+    var oldMutation = Blockly.Xml.domToText(this.mutationToDom());
+    if (isAdding) {
+      this.inputs_++;
+      const number = this.inputs_;
+      const newInput = this.appendValueInput(`INPUT${number}`);
+      this.fillInBlock(newInput.connection, number - 1);
+    } else if (this.inputs_ > 1) {
+      const number = this.inputs_;
+      this.removeInput(`INPUT${number}`);
+      this.inputs_--;
+    }
+    this.initSvg();
+    if (this.rendered) this.render();
+
+    var newMutation = Blockly.Xml.domToText(this.mutationToDom());
+    Blockly.Events.fire(new Blockly.Events.BlockChange(this,
+      'mutation', null, oldMutation, newMutation));
+    Blockly.Events.setGroup(false);
+  }
+};
+
 Blockly.Blocks['operator_letter_of'] = {
   /**
    * Block for "letter _ of _" operator.
