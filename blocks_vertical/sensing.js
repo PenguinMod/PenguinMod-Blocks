@@ -795,6 +795,45 @@ Blockly.Blocks['sensing_of'] = {
   }
 };
 
+Blockly.Blocks['sensing_set_of'] = {
+  /**
+   * Block to set properties of sprites.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "message0": 'set %1 of %2 to %3',
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "PROPERTY",
+          "options": [
+            [Blockly.Msg.SENSING_OF_XPOSITION, 'x position'],
+            [Blockly.Msg.SENSING_OF_YPOSITION, 'y position'],
+            [Blockly.Msg.SENSING_OF_DIRECTION, 'direction'],
+            [Blockly.Msg.SENSING_OF_COSTUMENUMBER, 'costume #'],
+            [Blockly.Msg.SENSING_OF_COSTUMENAME, 'costume name'],
+            [Blockly.Msg.SENSING_OF_SIZE, 'size'],
+            [Blockly.Msg.SENSING_OF_VOLUME, 'volume'],
+            [Blockly.Msg.SENSING_OF_BACKDROPNUMBER, 'backdrop #'],
+            [Blockly.Msg.SENSING_OF_BACKDROPNAME, 'backdrop name']
+          ]
+        },
+        {
+          "type": "input_value",
+          "name": "OBJECT"
+        },
+        {
+          "type": "input_value",
+          "name": "VALUE"
+        }
+      ],
+      "category": Blockly.Categories.sensing,
+      "extensions": ["colours_sensing", "shape_statement"]
+    });
+  }
+};
+
 Blockly.Blocks['sensing_current'] = {
   /**
    * Block to Report the current option.
