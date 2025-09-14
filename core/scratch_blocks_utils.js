@@ -237,3 +237,33 @@ Blockly.scratchBlocksUtils.duplicateAndDragCallback = function(oldBlock, event) 
     }, 0);
   };
 };
+
+/**
+ * Creates a shadow block of a inputted type and connects it to the source block.
+ * Primarly used by mutations.
+ * @param {!Blockly.Connection} connection The connection input from the source block that is to be connected
+ * @param {!String} type Field/Opcode that represents the shadow (text, math_number, etc)
+ * @param {!String} optValue Optional param that sets the shadows value
+ * @param {!String} optValueName Required if using 'optValue', represents the name of the shadows field
+ * @package
+ */
+Blockly.scratchBlocksUtils.generateMutatorShadow = function (connection, type, optValue, optValueName) {
+  if (connection.sourceBlock_.isInsertionMarker_) return;
+
+  Blockly.Events.disable();
+  const block = this.workspace.newBlock(type);
+  try {
+    if (optValue) block.setFieldValue(optValue, optValueName);
+    block.setShadow(true);
+    if (!this.isInsertionMarker()) {
+      block.initSvg();
+      block.render(false);
+    }
+  } finally {
+    Blockly.Events.enable();
+  }
+
+  if (Blockly.Events.isEnabled()) Blockly.Events.fire(new Blockly.Events.BlockCreate(block));
+  if (block.outputConnection) block.outputConnection.connect(connection);
+  else block.previousConnection.connect(connection);
+};
