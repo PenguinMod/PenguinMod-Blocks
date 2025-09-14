@@ -27,28 +27,6 @@ goog.require('Blockly.Colours');
 goog.require('Blockly.constants');
 goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
-/* Utility function for Expandable Blocks */
-const mutatorPopulateUtil = function (connection, type, optValue, optValueName) {
-  if (connection.sourceBlock_.isInsertionMarker_) return;
-
-  ScratchBlocks.Events.disable();
-  const block = this.workspace.newBlock(type);
-  try {
-    if (optValue) block.setFieldValue(optValue, optValueName);
-    block.setShadow(true);
-    if (!this.isInsertionMarker()) {
-      block.initSvg();
-      block.render(false);
-    }
-  } finally {
-    ScratchBlocks.Events.enable();
-  }
-
-  if (ScratchBlocks.Events.isEnabled()) ScratchBlocks.Events.fire(new ScratchBlocks.Events.BlockCreate(block));
-  if (block.outputConnection) block.outputConnection.connect(connection);
-  else block.previousConnection.connect(connection);
-}
-
 Blockly.Blocks['operator_add'] = {
   /**
    * Block for adding two numbers.
@@ -178,7 +156,7 @@ Blockly.Blocks['operator_expandableMath'] = {
     }
   },
 
-  fillInBlock: mutatorPopulateUtil,
+  fillInBlock: Blockly.scratchBlocksUtils.generateMutatorShadow,
   menuGenerator: function() {
     const dropdown = new Blockly.FieldDropdown(function () {
       return [
@@ -688,7 +666,7 @@ Blockly.Blocks['operator_expandablejoininputs'] = {
     })
   },
 
-  fillInBlock: mutatorPopulateUtil,
+  fillInBlock: Blockly.scratchBlocksUtils.generateMutatorShadow,
 
   mutationToDom: function () {
     // on save
