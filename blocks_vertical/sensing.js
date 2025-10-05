@@ -787,7 +787,7 @@ Blockly.Blocks['sensing_of'] = {
           "name": "OBJECT"
         }
       ],
-      "output": true,
+      "output": null,
       "category": Blockly.Categories.sensing,
       "outputShape": Blockly.OUTPUT_SHAPE_ROUND,
       "extensions": ["colours_sensing"]
