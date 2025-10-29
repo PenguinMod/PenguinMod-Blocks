@@ -581,6 +581,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
         '</shadow>' +
       '</value>' +
     '</block>' +
-    '<block type="field_textdropdown_test" id="extension_wedo_boolean"></block>' +
+    '<block type="field_textdropdown_test" id="field_textdropdown_test"></block>' +
+    '<block type="control_dualblock" id="control_dualblock"></block>' +
   '</category>' +
   '</xml>';

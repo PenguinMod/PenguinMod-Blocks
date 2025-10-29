@@ -1101,8 +1101,7 @@ Blockly.Block.prototype.setOutput = function(newBoolean, opt_check) {
       opt_check = null;
     }
     if (!this.outputConnection) {
-      goog.asserts.assert(!this.previousConnection,
-          'Remove previous connection prior to adding output connection.');
+      //goog.asserts.assert(!this.previousConnection, 'Remove previous connection prior to adding output connection.');
       this.outputConnection = this.makeConnection_(Blockly.OUTPUT_VALUE);
     }
     this.outputConnection.setCheck(opt_check);

@@ -1525,7 +1525,7 @@ Blockly.BlockSvg.prototype.renderDrawTop_ = function(steps, rightEdge) {
     // Top edge.
     if (this.previousConnection) {
       // Space before the notch
-      steps.push('H', Blockly.BlockSvg.NOTCH_START_PADDING);
+      steps.push('H', (this.outputConnection ? this.edgeShapeWidth_ : 0) + Blockly.BlockSvg.NOTCH_START_PADDING);
 
       // if we have a custom check that corresponds to a custom notch, use it
       const checkStatement = (this.previousConnection.check_ || [])[0];
@@ -1722,7 +1722,7 @@ Blockly.BlockSvg.prototype.renderDrawBottom_ = function(steps, cursorY) {
     var notchStart = (
       Blockly.BlockSvg.NOTCH_WIDTH +
       Blockly.BlockSvg.NOTCH_START_PADDING +
-      Blockly.BlockSvg.CORNER_RADIUS
+      (this.outputConnection ? this.height / 2 : Blockly.BlockSvg.CORNER_RADIUS)
     );
     steps.push('H', notchStart, ' ');
  
@@ -1756,7 +1756,9 @@ Blockly.BlockSvg.prototype.renderDrawBottom_ = function(steps, cursorY) {
  * @private
  */
 Blockly.BlockSvg.prototype.renderDrawLeft_ = function(steps, cursorY) {
-  let scale = this.height / 2
+  let hDiff = this.nextConnection ? Blockly.BlockSvg.NOTCH_HEIGHT : 0;
+  this.height -= hDiff;
+  let scale = this.height / 2;
 
   if (this.outputConnection) {
     // Scratch-style reporters have output connection y at half block height.
@@ -1814,6 +1816,7 @@ Blockly.BlockSvg.prototype.renderDrawLeft_ = function(steps, cursorY) {
     }
   }
   steps.push('z');
+  this.height += hDiff;
 };
 
 /**
