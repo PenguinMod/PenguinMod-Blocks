@@ -470,20 +470,3 @@ Blockly.Blocks["event_whenanything"] = {
     });
   }
 };
-
-Blockly.Blocks["event_whenjavascript"] = {
-  init: function () {
-    this.jsonInit({
-      "inputsInline": true,
-      "message0": "when javascript %1 === true",
-      "args0": [
-        {
-          "type": "input_value",
-          "name": "JS"
-        }
-      ],
-      "category": Blockly.Categories.event,
-      "extensions": ["colours_event", "shape_hat"]
-    });
-  }
-};
