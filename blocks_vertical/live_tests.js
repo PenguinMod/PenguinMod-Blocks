@@ -256,46 +256,6 @@ Blockly.Blocks['operator_expandableCompare'] = {
   }
 };
 
-Blockly.Blocks['looks_setVertTransform'] = {
-  /**
-   * Block to report properties of sprites.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": 'skew sprite vertically %1 %',
-      "args0": [
-        {
-          "type": "input_value",
-          "name": "PERCENT"
-        }
-      ],
-      "category": Blockly.Categories.looks,
-      "extensions": ["colours_looks", "shape_statement"]
-    });
-  }
-};
-
-Blockly.Blocks['looks_setHorizTransform'] = {
-  /**
-   * Block to report properties of sprites.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.jsonInit({
-      "message0": 'skew sprite horizontally %1 %',
-      "args0": [
-        {
-          "type": "input_value",
-          "name": "PERCENT"
-        }
-      ],
-      "category": Blockly.Categories.looks,
-      "extensions": ["colours_looks", "shape_statement"]
-    });
-  }
-};
-
 Blockly.Blocks['field_textdropdown_test'] = {
   init: function() {
     this.jsonInit({
@@ -531,3 +491,109 @@ Blockly.Blocks['control_dualblock'] = {
     });
   }
 };
+
+/* The following are Deprecated, either scrapped or redone */
+/**
+ * Hidden since this is dangerous to keep in the main
+ * toolbox. Its also now in the javascript extension
+ * which is built to be safer and more focused on js
+ */
+Blockly.Blocks['control_javascript_command'] = {
+  init: function () {
+    this.jsonInit({
+      "message0": "javascript %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "JS"
+        }
+      ],
+      "category": Blockly.Categories.control,
+      "extensions": ["colours_control", "shape_statement"]
+    });
+  }
+};
+Blockly.Blocks["operator_javascript_output"] = {
+  init: function () {
+    this.jsonInit({
+      "inputsInline": true,
+      "message0": "javascript %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "JS"
+        }
+      ],
+      "category": Blockly.Categories.operators,
+      "extensions": ["colours_operators", "output_string"]
+    });
+  }
+};
+Blockly.Blocks["operator_javascript_boolean"] = {
+  init: function () {
+    this.jsonInit({
+      "inputsInline": true,
+      "message0": "javascript %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "JS"
+        }
+      ],
+      "category": Blockly.Categories.operators,
+      "extensions": ["colours_operators", "output_boolean"]
+    });
+  }
+};
+Blockly.Blocks["event_whenjavascript"] = {
+  init: function () {
+    this.jsonInit({
+      "inputsInline": true,
+      "message0": "when javascript %1 === true",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "JS"
+        }
+      ],
+      "category": Blockly.Categories.event,
+      "extensions": ["colours_event", "shape_hat"]
+    });
+  }
+};
+
+/**
+ * Renamed to shear, which is now an effect in looks
+ */
+Blockly.Blocks['looks_setVertTransform'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": 'skew sprite vertically %1 %',
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "PERCENT"
+        }
+      ],
+      "category": Blockly.Categories.looks,
+      "extensions": ["colours_looks", "shape_statement"]
+    });
+  }
+};
+Blockly.Blocks['looks_setHorizTransform'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": 'skew sprite horizontally %1 %',
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "PERCENT"
+        }
+      ],
+      "category": Blockly.Categories.looks,
+      "extensions": ["colours_looks", "shape_statement"]
+    });
+  }
+};
+
+/* End of Deprecation marker */
