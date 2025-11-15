@@ -29,9 +29,9 @@ Blockly.Blocks['operator_expandableBool'] = {
     });
 
     this.inputs_ = 0;
+    this.expandable_ = true;
   },
 
-  // EDIT THIS IN https://github.com/PenguinMod/penguinmod.github.io/blob/develop/src/addons/addons/editor-tweaks/userscript.js#L105
   fillInBlock: Blockly.scratchBlocksUtils.generateMutatorShadow,
   menuGenerator: function () {
     const dropdown = new Blockly.FieldDropdown(function () {
@@ -158,6 +158,7 @@ Blockly.Blocks['operator_expandableCompare'] = {
     });
 
     this.inputs_ = 0;
+    this.expandable_ = true;
   },
 
   fillInBlock: Blockly.scratchBlocksUtils.generateMutatorShadow,
@@ -225,7 +226,7 @@ Blockly.Blocks['operator_expandableCompare'] = {
         const menu = input.appendField(this.menuGenerator());
         menu.fieldRow[0].setValue(menuValues[i - 1] ? menuValues[i - 1] : "m", true);
       }
-      // vm will automatically replace2 empty inputs with saved shadows
+      // vm will automatically replace empty inputs with saved shadows
     }
   },
 
