@@ -361,7 +361,7 @@ Blockly.ContextMenu.expandBlockOption = function(block) {
  * @return {!Object} A menu option, containing text, enabled, and a callback.
  * @package
  */
-Blockly.ContextMenu.expandBlockOption = function(block) {
+Blockly.ContextMenu.contractBlockOption = function(block) {
   return {
     enabled: true,
     text: "Contract",
