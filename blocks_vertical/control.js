@@ -251,6 +251,7 @@ Blockly.Blocks['control_expandableIf'] = {
     this.branches_ = 0;
     this.nextIsElse = true;
     this.endsInElse = false;
+    this.expandable_ = true;
   },
 
   fillInBlock: Blockly.scratchBlocksUtils.generateMutatorShadow,
