@@ -731,7 +731,13 @@ Blockly.BlockSvg.prototype.showContextMenu_ = function(e) {
     if (this.isEditable() && this.workspace.options.comments) {
       menuOptions.push(Blockly.ContextMenu.blockCommentOption(block));
     }
-    //menuOptions.push(Blockly.ContextMenu.blockCollapseOption(block));
+    // UNUSED menuOptions.push(Blockly.ContextMenu.blockCollapseOption(block));
+    if (this.isExpandable()) {
+      menuOptions.push(
+        Blockly.ContextMenu.expandBlockOption(block),
+        Blockly.ContextMenu.contractBlockOption(block),
+      );
+    }
     menuOptions.push(Blockly.ContextMenu.blockDeleteOption(block));
   } else if (this.parentBlock_ && this.isShadow_ && this.type !== 'polygon') {
     this.parentBlock_.showContextMenu_(e);
