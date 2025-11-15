@@ -119,6 +119,12 @@ Blockly.Block = function(workspace, prototypeName, opt_id) {
    * @type {boolean}
    * @private
    */
+  this.expandable_ = false;
+
+  /**
+   * @type {boolean}
+   * @private
+   */
   this.isShadow_ = false;
 
   /**
@@ -702,6 +708,14 @@ Blockly.Block.prototype.setInsertionMarker = function(insertionMarker) {
  */
 Blockly.Block.prototype.isEditable = function() {
   return this.editable_ && !(this.workspace && this.workspace.options.readOnly);
+};
+
+/**
+ * Get whether this block is expandable or not
+ * @return {boolean} True if expandable.
+ */
+Blockly.Block.prototype.isExpandable = function() {
+  return this.expandable_;
 };
 
 /**
