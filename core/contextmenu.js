@@ -340,6 +340,38 @@ Blockly.ContextMenu.blockCommentOption = function(block) {
 };
 
 /**
+ * Make a context menu option for expanding an expandable block.
+ * @param {!Blockly.BlockSvg} block The block where the right-click originated.
+ * @return {!Object} A menu option, containing text, enabled, and a callback.
+ * @package
+ */
+Blockly.ContextMenu.expandBlockOption = function(block) {
+  return {
+    enabled: true,
+    text: "Expand",
+    callback: function() {
+      block.onExpandableButtonClicked_(true);
+    }
+  };
+};
+
+/**
+ * Make a context menu option for contracting an expandable block.
+ * @param {!Blockly.BlockSvg} block The block where the right-click originated.
+ * @return {!Object} A menu option, containing text, enabled, and a callback.
+ * @package
+ */
+Blockly.ContextMenu.expandBlockOption = function(block) {
+  return {
+    enabled: true,
+    text: "Contract",
+    callback: function() {
+      block.onExpandableButtonClicked_(false);
+    }
+  };
+};
+
+/**
  * Make a context menu option for undoing the most recent action on the
  * workspace.
  * @param {!Blockly.WorkspaceSvg} ws The workspace where the right-click
