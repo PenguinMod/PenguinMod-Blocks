@@ -146,6 +146,7 @@ Blockly.Blocks['operator_expandableMath'] = {
     });
 
     this.inputs_ = 0;
+    this.expandable_ = true;
   },
 
   fillInBlock: Blockly.scratchBlocksUtils.generateMutatorShadow,
@@ -663,6 +664,7 @@ Blockly.Blocks['operator_expandablejoininputs'] = {
 
     this.messageList = ["apple", "banana", "pear", "orange", "mango", "strawberry", "pineapple", "grape", "kiwi"];
     this.inputs_ = 0;
+    this.expandable_ = true;
   },
 
   fillInBlock: Blockly.scratchBlocksUtils.generateMutatorShadow,
