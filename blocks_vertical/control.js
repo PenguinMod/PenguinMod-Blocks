@@ -369,6 +369,7 @@ Blockly.Blocks['control_expandableIf'] = {
     // Return null at the end because setValue is called here already.
     if (this.isInFlyout) return;
     Blockly.Events.setGroup(true);
+    Blockly.Events.expandableClick = true;
     var oldMutation = Blockly.Xml.domToText(this.mutationToDom());
     if (isAdding) {
       if (this.nextIsElse) this.branches_++;
@@ -401,6 +402,7 @@ Blockly.Blocks['control_expandableIf'] = {
       this, 'mutation', null, oldMutation, newMutation
     ));
     Blockly.Events.setGroup(false);
+    Blockly.Events.expandableClick = false;
   }
 };
 
