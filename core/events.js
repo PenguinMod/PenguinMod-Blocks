@@ -55,6 +55,12 @@ Blockly.Events.recordUndo = true;
 Blockly.Events.disabled_ = 0;
 
 /**
+ * Sets whether certain events are from an expandable click.
+ * @type {boolean}
+ */
+Blockly.Events.expandableClick = false;
+
+/**
  * Name of event that creates a block. Will be deprecated for BLOCK_CREATE.
  * @const
  */
