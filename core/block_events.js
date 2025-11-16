@@ -228,6 +228,7 @@ Blockly.Events.Create = function(block) {
     this.xml = Blockly.Xml.blockToDom(block);
   }
   this.ids = Blockly.Events.getDescendantIds_(block);
+  this.isFromExpandable = Blockly.Events.expandableClick;
 };
 goog.inherits(Blockly.Events.Create, Blockly.Events.BlockBase);
 
@@ -310,6 +311,7 @@ Blockly.Events.Delete = function(block) {
     this.oldXml = Blockly.Xml.blockToDom(block);
   }
   this.ids = Blockly.Events.getDescendantIds_(block);
+  this.isFromExpandable = Blockly.Events.expandableClick;
 };
 goog.inherits(Blockly.Events.Delete, Blockly.Events.BlockBase);
 
