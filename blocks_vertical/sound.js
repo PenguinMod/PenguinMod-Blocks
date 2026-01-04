@@ -492,3 +492,19 @@ Blockly.Blocks['sound_getSoundVolume'] = {
     });
   }
 };
+
+Blockly.Blocks['sound_currentlyPlayingSounds'] = {
+  /**
+   * pm: Block to report the volume of a sound at the current position.
+   * @this Blockly.Block
+   */
+  init: function () {
+    this.jsonInit({
+      "message0": "currently playing sounds",
+      "args0": [],
+      "category": Blockly.Categories.sound,
+      "checkboxInFlyout": true,
+      "extensions": ["colours_sounds", "output_string"]
+    });
+  }
+};
