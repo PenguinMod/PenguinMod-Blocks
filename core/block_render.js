@@ -491,7 +491,6 @@ Blockly.BlockSvg.FIELD_TEXTINPUT_ANIMATE_POSITIONING = false;
  */
 Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
   base : { // Outer shape: any.
-    
   },
   1 : { // Outer shape: hexagon.
     0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in hexagon.
@@ -1319,8 +1318,11 @@ Blockly.BlockSvg.prototype.computeOutputPadding_ = function(inputRows) {
     row.paddingStart += customShape.blockPaddingStart(this, otherShape, firstInput, firstField, row);
   }
 
-  const paddingStart = (Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING[shape] || {})[otherShape];
-  row.paddingStart += paddingStart === undefined ? Blockly.BlockSvg.DEFAULT_SHAPE_PADDING : paddingStart;
+  const internalPadding = (Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING[shape] || {});
+  const paddingStart = internalPadding[otherShape] ?? Blockly.BlockSvg.DEFAULT_SHAPE_PADDING
+    + internalPadding.base ?? 0
+    + Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING.base[otherShape] ?? 0;
+  row.paddingStart += paddingStart;
 
   // End row padding: based on last input or last field.
   var lastInput = row[row.length - 1];
@@ -1356,8 +1358,10 @@ Blockly.BlockSvg.prototype.computeOutputPadding_ = function(inputRows) {
     row.paddingEnd += customShape.blockPaddingEnd(this, otherShape, lastInput, lastField, row);
   }
 
-  const paddingEnd = (Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING[shape] || {})[otherShape];
-  row.paddingEnd += paddingEnd === undefined ? Blockly.BlockSvg.DEFAULT_SHAPE_PADDING : paddingEnd;
+  const paddingEnd = internalPadding[otherShape] ?? Blockly.BlockSvg.DEFAULT_SHAPE_PADDING
+    + internalPadding.base ?? 0
+    + Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING.base[otherShape] ?? 0;
+  row.paddingEnd += paddingEnd;
 };
 
 /**
