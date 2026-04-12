@@ -490,6 +490,9 @@ Blockly.BlockSvg.FIELD_TEXTINPUT_ANIMATE_POSITIONING = false;
  * See also: `Blockly.BlockSvg.computeOutputPadding_`.
  */
 Blockly.BlockSvg.SHAPE_IN_SHAPE_PADDING = {
+  base : { // Outer shape: any.
+    
+  },
   1 : { // Outer shape: hexagon.
     0 : 5 * Blockly.BlockSvg.GRID_UNIT, // Field in hexagon.
     1 : 2 * Blockly.BlockSvg.GRID_UNIT, // Hexagon in hexagon.
