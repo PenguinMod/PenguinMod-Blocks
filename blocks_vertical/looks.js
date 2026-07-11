@@ -389,7 +389,9 @@ Blockly.Blocks['looks_changeeffectby'] = {
             ["blue", 'BLUE'],
             ["opaque", 'OPAQUE'],
             ["horizontal shear", 'HORIZONTAL_SHEAR'],
-            ["vertical shear", 'VERTICAL_SHEAR']
+            ["vertical shear", 'VERTICAL_SHEAR'],
+            ["repeat X", 'REPEAT_X'],
+            ["repeat Y", 'REPEAT_Y']
           ]
         },
         {
@@ -429,7 +431,9 @@ Blockly.Blocks['looks_seteffectto'] = {
             ["blue", 'BLUE'],
             ["opaque", 'OPAQUE'],
             ["horizontal shear", 'HORIZONTAL_SHEAR'],
-            ["vertical shear", 'VERTICAL_SHEAR']
+            ["vertical shear", 'VERTICAL_SHEAR'],
+            ["repeat X", 'REPEAT_X'],
+            ["repeat Y", 'REPEAT_Y']
           ]
         },
         {
@@ -1056,7 +1060,9 @@ Blockly.Blocks["looks_getEffectValue"] = {
             ["blue", 'BLUE'],
             ["opaque", 'OPAQUE'],
             ["horizontal shear", 'HORIZONTAL_SHEAR'],
-            ["vertical shear", 'VERTICAL_SHEAR']
+            ["vertical shear", 'VERTICAL_SHEAR'],
+            ["repeat X", 'REPEAT_X'],
+            ["repeat Y", 'REPEAT_Y']
           ]
         }
       ],
