@@ -8892,7 +8892,7 @@ Blockly.ScratchMsgs.locales["ko"] =
     "NEW_PROCEDURE": "블록 만들기",
     "PROCEDURE_ALREADY_EXISTS": "이름이 \"%1\"인 함수는 이미 존재합니다.",
     "PROCEDURE_DEFAULT_NAME": "블록 이름",
-    "PROCEDURE_USED": "To delete a block definition, first remove all uses of the block",
+    "PROCEDURE_USED": "이 블록의 정의를 지우려면 사용하는 블록을 먼저 지우세요.",
     "NEW_LIST": "리스트 만들기",
     "NEW_LIST_TITLE": "새로운 리스트 이름:",
     "LIST_MODAL_TITLE": "새로운 리스트",
@@ -8905,7 +8905,10 @@ Blockly.ScratchMsgs.locales["ko"] =
     "NEW_BROADCAST_MESSAGE": "새로운 메시지",
     "NEW_BROADCAST_MESSAGE_TITLE": "새로운 메시지 이름:",
     "BROADCAST_MODAL_TITLE": "새로운 메시지",
-    "DEFAULT_BROADCAST_MESSAGE_NAME": "메시지1"
+    "DEFAULT_BROADCAST_MESSAGE_NAME": "메시지1",
+    "SOUND_STOP": "%1 소리 멈추기",
+    "SOUND_PAUSE": "%1 소리 일시 정지",
+    "SOUND_STOP_SET_FADEOUT_TO": "%1 소리가 끝날 때 페이드 아웃의 기간을 %2 초로 정하기"
 };
 
 Blockly.ScratchMsgs.locales["ha"] =
