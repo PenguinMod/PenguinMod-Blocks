@@ -155,7 +155,7 @@ Blockly.Blocks['motion_turnrightaroundxy'] = {
    */
   init: function () {
     this.jsonInit({
-      "message0": "turn %1 %2 degrees around x: %3 y: %4",
+      "message0": "%1 방향으로 x: %3 y: %4 (을)를 맴돌면서 %2 만큼 회전하기",
       "args0": [
         {
           "type": "field_image",
@@ -189,7 +189,7 @@ Blockly.Blocks['motion_turnleftaroundxy'] = {
    */
   init: function () {
     this.jsonInit({
-      "message0": "turn %1 %2 degrees around x: %3 y: %4",
+      "message0": "%1 방향으로 x: %3 y: %4 (을)를 맴돌면서 %2 만큼 회전하기",
       "args0": [
         {
           "type": "field_image",
@@ -523,7 +523,7 @@ Blockly.Blocks['motion_changebyxy'] = {
    */
   init: function() {
     this.jsonInit({
-      "message0": "change by x: %1 y: %2",
+      "message0": "x: %1 y: %2 좌표만큼 이동하기",
       "args0": [
         {
           "type": "input_value",
