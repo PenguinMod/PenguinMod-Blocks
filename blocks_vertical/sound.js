@@ -111,7 +111,7 @@ Blockly.Blocks['sound_stop'] = {
    */
   init: function() {
     this.jsonInit({
-      "message0": "stop sound %1",
+      "message0": Blockly.Msg.SOUND_STOP,
       "args0": [
         {
           "type": "input_value",
@@ -131,7 +131,7 @@ Blockly.Blocks['sound_pause'] = {
    */
   init: function () {
     this.jsonInit({
-      "message0": "pause sound %1",
+      "message0": Blockly.Msg.SOUND_PAUSE,
       "args0": [
         {
           "type": "input_value",
@@ -152,7 +152,7 @@ Blockly.Blocks['sound_set_stop_fadeout_to'] = {
    */
   init: function () {
     this.jsonInit({
-      "message0": "set fade out to %1 seconds on %2",
+      "message0": Blockly.Msg.SOUND_SET_STOP_FADEOUT_TO,
       "args0": [
         {
           "type": "input_value",
@@ -176,7 +176,7 @@ Blockly.Blocks['sound_play_at_seconds'] = {
    */
   init: function () {
     this.jsonInit({
-      "message0": "start sound %1 at %2 seconds",
+      "message0": Blockly.Msg.SOUND_PLAY_AT_SECONDS,
       "args0": [
         {
           "type": "input_value",
@@ -202,7 +202,7 @@ Blockly.Blocks['sound_play_at_seconds_until_done'] = {
    */
   init: function () {
     this.jsonInit({
-      "message0": "play sound %1 starting at %2 seconds until done",
+      "message0": Blockly.Msg.SOUND_PLAY_SECONDS_UNTIL_DONE,
       "args0": [
         {
           "type": "input_value",
@@ -240,7 +240,7 @@ Blockly.Blocks['sound_pauseallsounds'] = {
    */
   init: function() {
     this.jsonInit({
-      "message0": "pause all sounds",
+      "message0": Blockly.Msg.SOUND_PAUSEALLSOUNDS,
       "category": Blockly.Categories.sound,
       "extensions": ["colours_sounds", "shape_statement"]
     });
@@ -440,7 +440,7 @@ Blockly.Blocks['sound_getLength'] = {
    */
   init: function() {
     this.jsonInit({
-      "message0": "length of %1",
+      "message0": Blockly.Msg.SOUND_GETLENGTH,
       "args0": [
         {
           "type": "input_value",
@@ -460,7 +460,7 @@ Blockly.Blocks['sound_getTimePosition'] = {
    */
   init: function () {
     this.jsonInit({
-      "message0": "current time position of %1",
+      "message0": Blockly.Msg.SOUND_GETTIMEPOSITION,
       "args0": [
         {
           "type": "input_value",
@@ -480,7 +480,7 @@ Blockly.Blocks['sound_getSoundVolume'] = {
    */
   init: function () {
     this.jsonInit({
-      "message0": "current volume of %1",
+      "message0": Blockly.Msg.SOUND_GETSOUNDVOLUME,
       "args0": [
         {
           "type": "input_value",
