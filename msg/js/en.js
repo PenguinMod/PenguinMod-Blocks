@@ -296,3 +296,6 @@ Blockly.Msg["NEW_BROADCAST_MESSAGE"] = "New message";
 Blockly.Msg["NEW_BROADCAST_MESSAGE_TITLE"] = "New message name:";
 Blockly.Msg["BROADCAST_MODAL_TITLE"] = "New Message";
 Blockly.Msg["DEFAULT_BROADCAST_MESSAGE_NAME"] = "message1";
+Blockly.Msg["SOUND_STOP"] = "stop sound %1";
+Blockly.Msg["SOUND_PAUSE"] = "pause sound %1";
+Blockly.Msg["SOUND_SET_STOP_FADEOUT_TO"] = "set fade out to %1 seconds on %2";
