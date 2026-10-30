@@ -126,7 +126,7 @@ Blockly.Blocks['control_repeatForSeconds'] = {
   init: function() {
     this.jsonInit({
       "id": "control_repeatForSeconds",
-      "message0": "repeat for %1 seconds",
+      "message0": Blockly.Msg.CONTROL_REPEATFORSECONDS,
       "message1": "%1", // Statement
       "message2": "%1", // Icon
       "lastDummyAlign2": "RIGHT",
@@ -416,9 +416,9 @@ Blockly.Blocks['control_try_catch'] = {
   init: function () {
     this.jsonInit({
       "type": "control_try_catch",
-      "message0": "try to do",
+      "message0": Blockly.Msg.CONTROL_TRYTODO,
       "message1": "%1",
-      "message2": "if a block errors",
+      "message2": Blockly.Msg.CONTROL_TRYERROR,
       "message3": "%1",
       "args1": [
         {
@@ -803,7 +803,7 @@ Blockly.Blocks['control_delete_clones_of'] = {
   init: function() {
     this.jsonInit({
       "id": "control_delete_clones_of",
-      "message0": "delete clones of %1",
+      "message0": Blockly.Msg.CONTROL_DELETECLONESOFSPRITE,
       "args0": [
         {
           "type": "input_value",
@@ -839,7 +839,7 @@ Blockly.Blocks['control_is_clone'] = {
    */
   init: function () {
     this.jsonInit({
-      "message0": "is clone?",
+      "message0": Blockly.Msg.CONTROL_ISCLONE,
       "category": Blockly.Categories.control,
       "extensions": ["colours_control", "output_boolean"]
     });

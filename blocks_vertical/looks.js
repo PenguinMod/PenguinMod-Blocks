@@ -383,10 +383,10 @@ Blockly.Blocks['looks_changeeffectby'] = {
             [Blockly.Msg.LOOKS_EFFECT_MOSAIC, 'MOSAIC'],
             [Blockly.Msg.LOOKS_EFFECT_BRIGHTNESS, 'BRIGHTNESS'],
             [Blockly.Msg.LOOKS_EFFECT_GHOST, 'GHOST'],
-            ["saturation", 'SATURATION'],
-            ["red", 'RED'],
-            ["green", 'GREEN'],
-            ["blue", 'BLUE'],
+            [Blockly.Msg.LOOKS_EFFECT_SATURATION, 'SATURATION'],
+            [Blockly.Msg.LOOKS_EFFECT_RED, 'RED'],
+            [Blockly.Msg.LOOKS_EFFECT_GREEN, 'GREEN'],
+            [Blockly.Msg.LOOKS_EFFECT_BLUE, 'BLUE'],
             ["opaque", 'OPAQUE'],
             ["horizontal shear", 'HORIZONTAL_SHEAR'],
             ["vertical shear", 'VERTICAL_SHEAR'],
@@ -425,10 +425,10 @@ Blockly.Blocks['looks_seteffectto'] = {
             [Blockly.Msg.LOOKS_EFFECT_MOSAIC, 'MOSAIC'],
             [Blockly.Msg.LOOKS_EFFECT_BRIGHTNESS, 'BRIGHTNESS'],
             [Blockly.Msg.LOOKS_EFFECT_GHOST, 'GHOST'],
-            ["saturation", 'SATURATION'],
-            ["red", 'RED'],
-            ["green", 'GREEN'],
-            ["blue", 'BLUE'],
+            [Blockly.Msg.LOOKS_EFFECT_SATURATION, 'SATURATION'],
+            [Blockly.Msg.LOOKS_EFFECT_RED, 'RED'],
+            [Blockly.Msg.LOOKS_EFFECT_GREEN, 'GREEN'],
+            [Blockly.Msg.LOOKS_EFFECT_BLUE, 'BLUE'],
             ["opaque", 'OPAQUE'],
             ["horizontal shear", 'HORIZONTAL_SHEAR'],
             ["vertical shear", 'VERTICAL_SHEAR'],
@@ -634,7 +634,7 @@ Blockly.Blocks['looks_previouscostume'] = {
    */
   init: function() {
     this.jsonInit({
-      "message0": "previous costume",
+      "message0": Blockly.Msg.LOOKS_PREVIOUSCOSTUME,
       "category": Blockly.Categories.looks,
       "extensions": ["colours_looks", "shape_statement"]
     });
@@ -1040,7 +1040,7 @@ Blockly.Blocks["looks_getEffectValue"] = {
     this.jsonInit({
       "inputsInline": true,
       "category": "looks",
-      "message0": "%1 effect",
+      "message0": Blockly.Msg.LOOKS_GETEFFECTVALUE,
       "checkboxInFlyout": true,
       "args0": [
         {
@@ -1054,10 +1054,10 @@ Blockly.Blocks["looks_getEffectValue"] = {
             [Blockly.Msg.LOOKS_EFFECT_MOSAIC, 'MOSAIC'],
             [Blockly.Msg.LOOKS_EFFECT_BRIGHTNESS, 'BRIGHTNESS'],
             [Blockly.Msg.LOOKS_EFFECT_GHOST, 'GHOST'],
-            ["saturation", 'SATURATION'],
-            ["red", 'RED'],
-            ["green", 'GREEN'],
-            ["blue", 'BLUE'],
+            [Blockly.Msg.LOOKS_EFFECT_SATURATION, 'SATURATION'],
+            [Blockly.Msg.LOOKS_EFFECT_RED, 'RED'],
+            [Blockly.Msg.LOOKS_EFFECT_GREEN, 'GREEN'],
+            [Blockly.Msg.LOOKS_EFFECT_BLUE, 'BLUE'],
             ["opaque", 'OPAQUE'],
             ["horizontal shear", 'HORIZONTAL_SHEAR'],
             ["vertical shear", 'VERTICAL_SHEAR'],
